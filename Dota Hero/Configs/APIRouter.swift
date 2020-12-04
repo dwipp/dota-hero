@@ -34,7 +34,10 @@ enum APIRouter: APIConfiguration {
     
     
     func asURLRequest() throws -> URLRequest {
-        let url = try Constants.ProductionServer.baseURL.asURL()
+        var url = try Constants.ProductionServer.baseURL.asURL()
+        #if DEBUG
+            url = try Constants.DevelopmentServer.baseURL.asURL()
+        #endif
         
         var urlRequest = URLRequest(url: url.appendingPathComponent(path))
         urlRequest.httpMethod = method.rawValue

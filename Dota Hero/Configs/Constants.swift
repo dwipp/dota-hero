@@ -12,6 +12,9 @@ struct Constants {
     struct ProductionServer {
         static let baseURL = "https://api.opendota.com/api"
     }
+    struct DevelopmentServer {
+        static let baseURL = "https://api.opendota.com/api"
+    }
 }
 
 enum HTTPHeaderField:String {
