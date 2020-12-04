@@ -10,6 +10,12 @@
 		4594D1702579BAC7006BFA5E /* APIConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4594D16F2579BAC7006BFA5E /* APIConfiguration.swift */; };
 		4594D1752579BAF6006BFA5E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4594D1742579BAF6006BFA5E /* Constants.swift */; };
 		4594D17A2579BB16006BFA5E /* APIRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4594D1792579BB16006BFA5E /* APIRouter.swift */; };
+		4594D1932579C3C4006BFA5E /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4594D1922579C3C4006BFA5E /* BaseVC.swift */; };
+		4594D19B2579C3E3006BFA5E /* ListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4594D19A2579C3E3006BFA5E /* ListVC.swift */; };
+		4594D1A02579C3EC006BFA5E /* ListVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4594D19F2579C3EC006BFA5E /* ListVM.swift */; };
+		4594D1A52579C4B9006BFA5E /* ListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4594D1A42579C4B9006BFA5E /* ListTests.swift */; };
+		4594D1AB2579C4E3006BFA5E /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4594D1AA2579C4E3006BFA5E /* List.swift */; };
+		4594D1B02579DA0F006BFA5E /* APITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4594D1AF2579DA0F006BFA5E /* APITests.swift */; };
 		459974362579B63C00D805DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459974352579B63C00D805DF /* AppDelegate.swift */; };
 		459974382579B63C00D805DF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459974372579B63C00D805DF /* SceneDelegate.swift */; };
 		4599743A2579B63C00D805DF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459974392579B63C00D805DF /* ViewController.swift */; };
@@ -46,6 +52,12 @@
 		4594D16F2579BAC7006BFA5E /* APIConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConfiguration.swift; sourceTree = "<group>"; };
 		4594D1742579BAF6006BFA5E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		4594D1792579BB16006BFA5E /* APIRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRouter.swift; sourceTree = "<group>"; };
+		4594D1922579C3C4006BFA5E /* BaseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseVC.swift; sourceTree = "<group>"; };
+		4594D19A2579C3E3006BFA5E /* ListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListVC.swift; sourceTree = "<group>"; };
+		4594D19F2579C3EC006BFA5E /* ListVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListVM.swift; sourceTree = "<group>"; };
+		4594D1A42579C4B9006BFA5E /* ListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTests.swift; sourceTree = "<group>"; };
+		4594D1AA2579C4E3006BFA5E /* List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
+		4594D1AF2579DA0F006BFA5E /* APITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APITests.swift; sourceTree = "<group>"; };
 		459974322579B63C00D805DF /* Dota Hero.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Dota Hero.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		459974352579B63C00D805DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		459974372579B63C00D805DF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -130,6 +142,23 @@
 			path = Configs;
 			sourceTree = "<group>";
 		};
+		4594D1912579C1C2006BFA5E /* Hero List */ = {
+			isa = PBXGroup;
+			children = (
+				4594D19A2579C3E3006BFA5E /* ListVC.swift */,
+				4594D19F2579C3EC006BFA5E /* ListVM.swift */,
+			);
+			path = "Hero List";
+			sourceTree = "<group>";
+		};
+		4594D1A92579C4CA006BFA5E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				4594D1AA2579C4E3006BFA5E /* List.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		459974292579B63C00D805DF = {
 			isa = PBXGroup;
 			children = (
@@ -155,6 +184,8 @@
 		459974342579B63C00D805DF /* Dota Hero */ = {
 			isa = PBXGroup;
 			children = (
+				4594D1A92579C4CA006BFA5E /* Models */,
+				4594D1912579C1C2006BFA5E /* Hero List */,
 				4594D16E2579BAAB006BFA5E /* Configs */,
 				459974352579B63C00D805DF /* AppDelegate.swift */,
 				459974372579B63C00D805DF /* SceneDelegate.swift */,
@@ -163,6 +194,7 @@
 				4599743E2579B63C00D805DF /* Assets.xcassets */,
 				459974402579B63C00D805DF /* LaunchScreen.storyboard */,
 				459974432579B63C00D805DF /* Info.plist */,
+				4594D1922579C3C4006BFA5E /* BaseVC.swift */,
 			);
 			path = "Dota Hero";
 			sourceTree = "<group>";
@@ -172,6 +204,8 @@
 			children = (
 				4599744C2579B63C00D805DF /* Dota_HeroTests.swift */,
 				4599744E2579B63C00D805DF /* Info.plist */,
+				4594D1A42579C4B9006BFA5E /* ListTests.swift */,
+				4594D1AF2579DA0F006BFA5E /* APITests.swift */,
 			);
 			path = "Dota HeroTests";
 			sourceTree = "<group>";
@@ -426,8 +460,12 @@
 				4594D1752579BAF6006BFA5E /* Constants.swift in Sources */,
 				4594D17A2579BB16006BFA5E /* APIRouter.swift in Sources */,
 				4599743A2579B63C00D805DF /* ViewController.swift in Sources */,
+				4594D1AB2579C4E3006BFA5E /* List.swift in Sources */,
+				4594D1A02579C3EC006BFA5E /* ListVM.swift in Sources */,
 				459974362579B63C00D805DF /* AppDelegate.swift in Sources */,
+				4594D19B2579C3E3006BFA5E /* ListVC.swift in Sources */,
 				459974382579B63C00D805DF /* SceneDelegate.swift in Sources */,
+				4594D1932579C3C4006BFA5E /* BaseVC.swift in Sources */,
 				4594D1702579BAC7006BFA5E /* APIConfiguration.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -437,6 +475,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				4599744D2579B63C00D805DF /* Dota_HeroTests.swift in Sources */,
+				4594D1A52579C4B9006BFA5E /* ListTests.swift in Sources */,
+				4594D1B02579DA0F006BFA5E /* APITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
