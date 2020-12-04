@@ -3,10 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4594D1702579BAC7006BFA5E /* APIConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4594D16F2579BAC7006BFA5E /* APIConfiguration.swift */; };
+		4594D1752579BAF6006BFA5E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4594D1742579BAF6006BFA5E /* Constants.swift */; };
+		4594D17A2579BB16006BFA5E /* APIRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4594D1792579BB16006BFA5E /* APIRouter.swift */; };
 		459974362579B63C00D805DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459974352579B63C00D805DF /* AppDelegate.swift */; };
 		459974382579B63C00D805DF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459974372579B63C00D805DF /* SceneDelegate.swift */; };
 		4599743A2579B63C00D805DF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459974392579B63C00D805DF /* ViewController.swift */; };
@@ -40,6 +43,9 @@
 /* Begin PBXFileReference section */
 		27541FB9891F6A0B6B5A3662 /* Pods-Dota Hero.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dota Hero.release.xcconfig"; path = "Target Support Files/Pods-Dota Hero/Pods-Dota Hero.release.xcconfig"; sourceTree = "<group>"; };
 		3B42CE21CAD604950324005F /* Pods-Dota HeroTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dota HeroTests.release.xcconfig"; path = "Target Support Files/Pods-Dota HeroTests/Pods-Dota HeroTests.release.xcconfig"; sourceTree = "<group>"; };
+		4594D16F2579BAC7006BFA5E /* APIConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConfiguration.swift; sourceTree = "<group>"; };
+		4594D1742579BAF6006BFA5E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		4594D1792579BB16006BFA5E /* APIRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRouter.swift; sourceTree = "<group>"; };
 		459974322579B63C00D805DF /* Dota Hero.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Dota Hero.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		459974352579B63C00D805DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		459974372579B63C00D805DF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -101,7 +107,6 @@
 				91F72B96F8508F9EC663CAA2 /* Pods-Dota HeroTests.debug.xcconfig */,
 				3B42CE21CAD604950324005F /* Pods-Dota HeroTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -113,6 +118,16 @@
 				D11EECAEC8DD0A24156D377B /* Pods_Dota_HeroTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4594D16E2579BAAB006BFA5E /* Configs */ = {
+			isa = PBXGroup;
+			children = (
+				4594D16F2579BAC7006BFA5E /* APIConfiguration.swift */,
+				4594D1742579BAF6006BFA5E /* Constants.swift */,
+				4594D1792579BB16006BFA5E /* APIRouter.swift */,
+			);
+			path = Configs;
 			sourceTree = "<group>";
 		};
 		459974292579B63C00D805DF = {
@@ -140,6 +155,7 @@
 		459974342579B63C00D805DF /* Dota Hero */ = {
 			isa = PBXGroup;
 			children = (
+				4594D16E2579BAAB006BFA5E /* Configs */,
 				459974352579B63C00D805DF /* AppDelegate.swift */,
 				459974372579B63C00D805DF /* SceneDelegate.swift */,
 				459974392579B63C00D805DF /* ViewController.swift */,
@@ -407,9 +423,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4594D1752579BAF6006BFA5E /* Constants.swift in Sources */,
+				4594D17A2579BB16006BFA5E /* APIRouter.swift in Sources */,
 				4599743A2579B63C00D805DF /* ViewController.swift in Sources */,
 				459974362579B63C00D805DF /* AppDelegate.swift in Sources */,
 				459974382579B63C00D805DF /* SceneDelegate.swift in Sources */,
+				4594D1702579BAC7006BFA5E /* APIConfiguration.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
