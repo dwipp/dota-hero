@@ -27,7 +27,7 @@ class RolesVM: RolesModelProtocol {
     private let database = Database()
     
     func fetchRoles() {
-        let heroes = database.fetch(ListHero.self)
+        let heroes = database.fetch(Hero.self)
         data.append(NSLocalizedString("All", comment: ""))
         for hero in heroes {
             data.append(contentsOf: hero.roles)

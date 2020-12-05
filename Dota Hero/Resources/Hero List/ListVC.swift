@@ -43,12 +43,12 @@ class ListVC: BaseVC, ListActionProtocol, ErrorDelegate {
     
     private func setup(){
         self.title = NSLocalizedString("Heroes of Dota", comment: "")
+        self.navigationItem.backButtonTitle = ""
         
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.scrollDirection = .vertical
         flowLayout.minimumLineSpacing = 10
         flowLayout.minimumInteritemSpacing = 1
-        print("widthhh: \(UIScreen.main.bounds.width)")
         if UIScreen.main.bounds.width < 375 {
             flowLayout.sectionInset = UIEdgeInsets(top: 10, left: 5, bottom: 10, right: 5)
         }else if UIScreen.main.bounds.width < 414 {
@@ -124,6 +124,13 @@ extension ListVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
             cell.showAnimatedGradientSkeleton()
         }
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let hero = self.viewmodel.data[indexPath.row]
+        let vc = HeroDetailVC()
+        vc.hero = hero
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

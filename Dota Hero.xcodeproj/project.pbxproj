@@ -15,7 +15,7 @@
 		4594D19B2579C3E3006BFA5E /* ListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4594D19A2579C3E3006BFA5E /* ListVC.swift */; };
 		4594D1A02579C3EC006BFA5E /* ListVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4594D19F2579C3EC006BFA5E /* ListVM.swift */; };
 		4594D1A52579C4B9006BFA5E /* ListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4594D1A42579C4B9006BFA5E /* ListTests.swift */; };
-		4594D1AB2579C4E3006BFA5E /* ListHero.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4594D1AA2579C4E3006BFA5E /* ListHero.swift */; };
+		4594D1AB2579C4E3006BFA5E /* Hero.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4594D1AA2579C4E3006BFA5E /* Hero.swift */; };
 		4594D1B02579DA0F006BFA5E /* APITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4594D1AF2579DA0F006BFA5E /* APITests.swift */; };
 		459974362579B63C00D805DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459974352579B63C00D805DF /* AppDelegate.swift */; };
 		459974382579B63C00D805DF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459974372579B63C00D805DF /* SceneDelegate.swift */; };
@@ -36,6 +36,8 @@
 		45DAFAF5257B868100AD5DEF /* HeroCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DAFAF3257B868100AD5DEF /* HeroCell.swift */; };
 		45DAFAF6257B868100AD5DEF /* HeroCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 45DAFAF4257B868100AD5DEF /* HeroCell.xib */; };
 		45DAFB0E257BD72900AD5DEF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 45DAFB10257BD72900AD5DEF /* Localizable.strings */; };
+		45DAFB19257BDA7B00AD5DEF /* HeroDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DAFB18257BDA7B00AD5DEF /* HeroDetailVM.swift */; };
+		45DAFB1E257BDA9500AD5DEF /* HeroDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DAFB1D257BDA9500AD5DEF /* HeroDetailVC.swift */; };
 		620BD010465851F529FC0068 /* Pods_Dota_HeroTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D11EECAEC8DD0A24156D377B /* Pods_Dota_HeroTests.framework */; };
 		9B4873CE8E6CC92E1A82515C /* Pods_Dota_Hero.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95D734B449BE9B6060328940 /* Pods_Dota_Hero.framework */; };
 		E295E656035A9BD14B51704E /* Pods_Dota_Hero_Dota_HeroUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7E521EA6D7C5D53E50B25C6 /* Pods_Dota_Hero_Dota_HeroUITests.framework */; };
@@ -69,7 +71,7 @@
 		4594D19A2579C3E3006BFA5E /* ListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListVC.swift; sourceTree = "<group>"; };
 		4594D19F2579C3EC006BFA5E /* ListVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListVM.swift; sourceTree = "<group>"; };
 		4594D1A42579C4B9006BFA5E /* ListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTests.swift; sourceTree = "<group>"; };
-		4594D1AA2579C4E3006BFA5E /* ListHero.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListHero.swift; sourceTree = "<group>"; };
+		4594D1AA2579C4E3006BFA5E /* Hero.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hero.swift; sourceTree = "<group>"; };
 		4594D1AF2579DA0F006BFA5E /* APITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APITests.swift; sourceTree = "<group>"; };
 		459974322579B63C00D805DF /* Dota Hero.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Dota Hero.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		459974352579B63C00D805DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -99,6 +101,8 @@
 		45DAFB0A257BD6E400AD5DEF /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		45DAFB0F257BD72900AD5DEF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		45DAFB14257BD72E00AD5DEF /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/Localizable.strings; sourceTree = "<group>"; };
+		45DAFB18257BDA7B00AD5DEF /* HeroDetailVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroDetailVM.swift; sourceTree = "<group>"; };
+		45DAFB1D257BDA9500AD5DEF /* HeroDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroDetailVC.swift; sourceTree = "<group>"; };
 		89747CF412AE40EADE3E76AA /* Pods-Dota Hero.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dota Hero.debug.xcconfig"; path = "Target Support Files/Pods-Dota Hero/Pods-Dota Hero.debug.xcconfig"; sourceTree = "<group>"; };
 		91F72B96F8508F9EC663CAA2 /* Pods-Dota HeroTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dota HeroTests.debug.xcconfig"; path = "Target Support Files/Pods-Dota HeroTests/Pods-Dota HeroTests.debug.xcconfig"; sourceTree = "<group>"; };
 		95D734B449BE9B6060328940 /* Pods_Dota_Hero.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Dota_Hero.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -175,7 +179,7 @@
 		4594D1912579C1C2006BFA5E /* Hero List */ = {
 			isa = PBXGroup;
 			children = (
-				4594D1AA2579C4E3006BFA5E /* ListHero.swift */,
+				4594D1AA2579C4E3006BFA5E /* Hero.swift */,
 				4594D19A2579C3E3006BFA5E /* ListVC.swift */,
 				4594D19F2579C3EC006BFA5E /* ListVM.swift */,
 				45DAFAF3257B868100AD5DEF /* HeroCell.swift */,
@@ -198,6 +202,8 @@
 		4594D1B82579DF44006BFA5E /* Hero Detail */ = {
 			isa = PBXGroup;
 			children = (
+				45DAFB18257BDA7B00AD5DEF /* HeroDetailVM.swift */,
+				45DAFB1D257BDA9500AD5DEF /* HeroDetailVC.swift */,
 			);
 			path = "Hero Detail";
 			sourceTree = "<group>";
@@ -536,18 +542,20 @@
 			files = (
 				4594D1752579BAF6006BFA5E /* Constants.swift in Sources */,
 				4594D17A2579BB16006BFA5E /* APIRouter.swift in Sources */,
-				4594D1AB2579C4E3006BFA5E /* ListHero.swift in Sources */,
+				4594D1AB2579C4E3006BFA5E /* Hero.swift in Sources */,
 				4594D1A02579C3EC006BFA5E /* ListVM.swift in Sources */,
 				459974362579B63C00D805DF /* AppDelegate.swift in Sources */,
 				4594D19B2579C3E3006BFA5E /* ListVC.swift in Sources */,
 				459974382579B63C00D805DF /* SceneDelegate.swift in Sources */,
 				45DAFAF5257B868100AD5DEF /* HeroCell.swift in Sources */,
+				45DAFB19257BDA7B00AD5DEF /* HeroDetailVM.swift in Sources */,
 				45B05068257B40CA00128B89 /* ErrorView.swift in Sources */,
 				45B05060257B0E3200128B89 /* Utils.swift in Sources */,
 				45B05078257B609C00128B89 /* RolesVC.swift in Sources */,
 				45DAFAE7257B6B4700AD5DEF /* Extensions.swift in Sources */,
 				4594D1932579C3C4006BFA5E /* BaseVC.swift in Sources */,
 				4567323B2579E7AA006D46B3 /* Database.swift in Sources */,
+				45DAFB1E257BDA9500AD5DEF /* HeroDetailVC.swift in Sources */,
 				45B0507D257B60A600128B89 /* RolesVM.swift in Sources */,
 				4594D1702579BAC7006BFA5E /* APIConfiguration.swift in Sources */,
 			);

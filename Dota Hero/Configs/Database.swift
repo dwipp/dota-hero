@@ -33,6 +33,11 @@ final class Database {
         return arrData
     }
     
+    func fetch<T: Object>(_ type: T.Type, with primaryKey:Int) -> T? {
+        let object = realm.object(ofType: type, forPrimaryKey: primaryKey)
+        return object
+    }
+    
     func delete<T: Object>(_ type:T.Type, with primaryKey:Int) {
         let object = realm.object(ofType: type, forPrimaryKey: primaryKey)
         if let object = object {

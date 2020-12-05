@@ -16,12 +16,12 @@ protocol ListModelProtocol {
     var action: ListActionProtocol? {get set}
     func fetchList()
     func fetchList(withRole role:String)
-    var data:[ListHero] {get}
+    var data:[Hero] {get}
 }
 
 class ListVM: ListModelProtocol {
     var action: ListActionProtocol?
-    private (set) var data = [ListHero]()
+    private (set) var data = [Hero]()
     private var database = Database()
     
     func fetchList() {
@@ -31,7 +31,7 @@ class ListVM: ListModelProtocol {
             self.action?.afterFetchList(statusCode: Code.noInternet)
             return
         }
-        AF.request(APIRouter.heroList).responseDecodable(of: [ListHero].self, decoder: Utils().decoder) { response in
+        AF.request(APIRouter.heroList).responseDecodable(of: [Hero].self, decoder: Utils().decoder) { response in
             switch response.result{
             case .success(let response):
                 self.database.save(response)
@@ -45,7 +45,7 @@ class ListVM: ListModelProtocol {
     }
     
     func fetchList(withRole role: String) {
-        data = database.fetch(ListHero.self)
+        data = database.fetch(Hero.self)
         if role != NSLocalizedString("All", comment: "") {
             data = data.filter{$0.roles.contains(role)}
         }
@@ -53,7 +53,7 @@ class ListVM: ListModelProtocol {
     }
     
     private func serveData(isCache:Bool){
-        self.data = self.database.fetch(ListHero.self)
+        self.data = self.database.fetch(Hero.self)
         if self.data.count == 0 && isCache {
             self.action?.afterFetchList(statusCode: Code.success)
         }else if self.data.count == 0 {
