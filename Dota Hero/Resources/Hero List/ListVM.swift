@@ -32,7 +32,6 @@ class ListVM: ListModelProtocol {
                 self.serveData()
                 break
             case .failure(let error):
-                print("error: \(error)")
                 self.action?.afterFetchList(error: error)
                 break
             }
