@@ -11,33 +11,34 @@ import XCTest
 class ListTests: XCTestCase {
     let list = ListVM()
     let database = Database()
+    let heroID = 999999
     override func setUpWithError() throws {
-        database.deleteAllData()
+        database.delete(ListHero.self, with: heroID)
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
 
     override func tearDownWithError() throws {
-        database.deleteAllData()
+        database.delete(ListHero.self, with: heroID)
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
     
     func testSaveAndFetchDB(){
         let listHero = ListHero()
-        listHero.id = 999999
+        listHero.id = heroID
         database.save([listHero])
         let hero = database.fetch(ListHero.self)
         
-        XCTAssertEqual(hero.last?.id, 999999)
+        XCTAssertEqual(hero.last?.id, heroID)
     }
     
     func testDeleteDB(){
         let listHero = ListHero()
-        listHero.id = 999999
+        listHero.id = heroID
         database.save([listHero])
-        database.delete(ListHero.self, with: 999999)
+        database.delete(ListHero.self, with: heroID)
         let hero = database.fetch(ListHero.self)
         
-        XCTAssertNotEqual(hero.last?.id, 999999)
+        XCTAssertNotEqual(hero.last?.id, heroID)
     }
     
 

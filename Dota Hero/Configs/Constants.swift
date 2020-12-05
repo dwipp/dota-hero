@@ -34,3 +34,10 @@ enum RequestParams {
     case body(_:Parameters)
     case url(_:Parameters)
 }
+
+enum Code:String {
+    case noInternet = "no-internet"
+    case success = "success"
+    case error = "error"
+    case empty = "empty"
+}

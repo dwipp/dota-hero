@@ -9,7 +9,7 @@ import Foundation
 import Alamofire
 
 protocol ListActionProtocol {
-    func afterFetchList(error:Error?)
+    func afterFetchList(statusCode:Code)
 }
 
 protocol ListModelProtocol {
@@ -25,14 +25,19 @@ class ListVM: ListModelProtocol {
     
     func fetchList() {
         serveData()
+        guard Utils().isReachable() else {
+            // no internet connection
+            self.action?.afterFetchList(statusCode: Code.noInternet)
+            return
+        }
         AF.request(APIRouter.heroList).responseDecodable(of: [ListHero].self, decoder: Utils().decoder) { response in
             switch response.result{
             case .success(let response):
                 self.database.save(response)
                 self.serveData()
                 break
-            case .failure(let error):
-                self.action?.afterFetchList(error: error)
+            case .failure(_):
+                self.action?.afterFetchList(statusCode: Code.error)
                 break
             }
         }
@@ -40,7 +45,11 @@ class ListVM: ListModelProtocol {
     
     private func serveData(){
         self.data = self.database.fetch(ListHero.self)
-        self.action?.afterFetchList(error: nil)
+        if self.data.count > 0 {
+            self.action?.afterFetchList(statusCode: Code.success)
+        }else {
+            self.action?.afterFetchList(statusCode: Code.empty)
+        }
     }
     
 }

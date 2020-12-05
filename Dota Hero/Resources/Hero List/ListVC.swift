@@ -8,9 +8,10 @@
 import UIKit
 import SnapKit
 
-class ListVC: BaseVC, ListActionProtocol {
+class ListVC: BaseVC, ListActionProtocol, ErrorDelegate {
     var viewmodel: ListModelProtocol
     let tableview = UITableView()
+    var errorView = ErrorView()
     
     init() {
         self.viewmodel = ListVM()
@@ -39,16 +40,29 @@ class ListVC: BaseVC, ListActionProtocol {
         tableview.dataSource = self
         tableview.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         tableview.snp.makeConstraints { (make) in
-            make.top.left.bottom.right.equalToSuperview()
+            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.topMargin)
+            make.left.bottom.right.equalToSuperview()
         }
+        errorView = ErrorView(frame: self.tableview.bounds)
+        errorView.delegate = self
     }
     
-    func afterFetchList(error: Error?) {
-        if let err = error {
-            print("yey: \(err)")
-            return
+    func afterFetchList(statusCode: Code) {
+        errorView.setup(statusCode)
+        switch statusCode {
+        case .error, .noInternet, .empty:
+            self.tableview.backgroundView = errorView
+            break
+        default:
+            self.tableview.backgroundView = nil
+            self.tableview.reloadData()
+            break
         }
-        self.tableview.reloadData()
+        
+    }
+    
+    func didTapReload() {
+        self.viewmodel.fetchList()
     }
 
 }
