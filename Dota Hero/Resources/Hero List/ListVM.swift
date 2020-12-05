@@ -46,7 +46,7 @@ class ListVM: ListModelProtocol {
     
     func fetchList(withRole role: String) {
         data = database.fetch(ListHero.self)
-        if role != "All" {
+        if role != NSLocalizedString("All", comment: "") {
             data = data.filter{$0.roles.contains(role)}
         }
         self.action?.afterFetchList(statusCode: Code.success)

@@ -14,7 +14,7 @@ class ListVC: BaseVC, ListActionProtocol, ErrorDelegate {
     var collection:UICollectionView?
     var errorView = ErrorView()
     var btnFilter = UIBarButtonItem()
-    var role = "All" {
+    var role = NSLocalizedString("All", comment: "") {
         didSet {
             btnFilter.title = role
             self.viewmodel.fetchList(withRole: role)
@@ -42,7 +42,7 @@ class ListVC: BaseVC, ListActionProtocol, ErrorDelegate {
     }
     
     private func setup(){
-        self.title = "Heroes of Dota"
+        self.title = NSLocalizedString("Heroes of Dota", comment: "")
         
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.scrollDirection = .vertical

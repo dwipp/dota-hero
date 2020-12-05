@@ -35,6 +35,7 @@
 		45DAFAE7257B6B4700AD5DEF /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DAFAE6257B6B4700AD5DEF /* Extensions.swift */; };
 		45DAFAF5257B868100AD5DEF /* HeroCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DAFAF3257B868100AD5DEF /* HeroCell.swift */; };
 		45DAFAF6257B868100AD5DEF /* HeroCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 45DAFAF4257B868100AD5DEF /* HeroCell.xib */; };
+		45DAFB0E257BD72900AD5DEF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 45DAFB10257BD72900AD5DEF /* Localizable.strings */; };
 		620BD010465851F529FC0068 /* Pods_Dota_HeroTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D11EECAEC8DD0A24156D377B /* Pods_Dota_HeroTests.framework */; };
 		9B4873CE8E6CC92E1A82515C /* Pods_Dota_Hero.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95D734B449BE9B6060328940 /* Pods_Dota_Hero.framework */; };
 		E295E656035A9BD14B51704E /* Pods_Dota_Hero_Dota_HeroUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7E521EA6D7C5D53E50B25C6 /* Pods_Dota_Hero_Dota_HeroUITests.framework */; };
@@ -94,6 +95,10 @@
 		45DAFAE6257B6B4700AD5DEF /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		45DAFAF3257B868100AD5DEF /* HeroCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroCell.swift; sourceTree = "<group>"; };
 		45DAFAF4257B868100AD5DEF /* HeroCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeroCell.xib; sourceTree = "<group>"; };
+		45DAFB06257BD6E400AD5DEF /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/Main.strings; sourceTree = "<group>"; };
+		45DAFB0A257BD6E400AD5DEF /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		45DAFB0F257BD72900AD5DEF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		45DAFB14257BD72E00AD5DEF /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/Localizable.strings; sourceTree = "<group>"; };
 		89747CF412AE40EADE3E76AA /* Pods-Dota Hero.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dota Hero.debug.xcconfig"; path = "Target Support Files/Pods-Dota Hero/Pods-Dota Hero.debug.xcconfig"; sourceTree = "<group>"; };
 		91F72B96F8508F9EC663CAA2 /* Pods-Dota HeroTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dota HeroTests.debug.xcconfig"; path = "Target Support Files/Pods-Dota HeroTests/Pods-Dota HeroTests.debug.xcconfig"; sourceTree = "<group>"; };
 		95D734B449BE9B6060328940 /* Pods_Dota_Hero.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Dota_Hero.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -170,7 +175,6 @@
 		4594D1912579C1C2006BFA5E /* Hero List */ = {
 			isa = PBXGroup;
 			children = (
-				45B05067257B40CA00128B89 /* ErrorView.swift */,
 				4594D1AA2579C4E3006BFA5E /* ListHero.swift */,
 				4594D19A2579C3E3006BFA5E /* ListVC.swift */,
 				4594D19F2579C3EC006BFA5E /* ListVM.swift */,
@@ -183,6 +187,7 @@
 		4594D1B72579DF36006BFA5E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				45DAFAFD257BD55100AD5DEF /* Global */,
 				45B05076257B605700128B89 /* Roles */,
 				4594D1B82579DF44006BFA5E /* Hero Detail */,
 				4594D1912579C1C2006BFA5E /* Hero List */,
@@ -232,6 +237,7 @@
 				4599743E2579B63C00D805DF /* Assets.xcassets */,
 				459974402579B63C00D805DF /* LaunchScreen.storyboard */,
 				459974432579B63C00D805DF /* Info.plist */,
+				45DAFB10257BD72900AD5DEF /* Localizable.strings */,
 			);
 			path = "Dota Hero";
 			sourceTree = "<group>";
@@ -274,6 +280,14 @@
 				45B0507C257B60A600128B89 /* RolesVM.swift */,
 			);
 			path = Roles;
+			sourceTree = "<group>";
+		};
+		45DAFAFD257BD55100AD5DEF /* Global */ = {
+			isa = PBXGroup;
+			children = (
+				45B05067257B40CA00128B89 /* ErrorView.swift */,
+			);
+			path = Global;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -366,6 +380,7 @@
 			knownRegions = (
 				en,
 				Base,
+				id,
 			);
 			mainGroup = 459974292579B63C00D805DF;
 			productRefGroup = 459974332579B63C00D805DF /* Products */;
@@ -389,6 +404,7 @@
 				45B05070257B51D000128B89 /* empty.json in Resources */,
 				45DAFAF6257B868100AD5DEF /* HeroCell.xib in Resources */,
 				4599743F2579B63C00D805DF /* Assets.xcassets in Resources */,
+				45DAFB0E257BD72900AD5DEF /* Localizable.strings in Resources */,
 				4599743D2579B63C00D805DF /* Main.storyboard in Resources */,
 				45B05072257B51D000128B89 /* no-internet.json in Resources */,
 			);
@@ -576,6 +592,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				4599743C2579B63C00D805DF /* Base */,
+				45DAFB06257BD6E400AD5DEF /* id */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -584,8 +601,18 @@
 			isa = PBXVariantGroup;
 			children = (
 				459974412579B63C00D805DF /* Base */,
+				45DAFB0A257BD6E400AD5DEF /* id */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		45DAFB10257BD72900AD5DEF /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				45DAFB0F257BD72900AD5DEF /* en */,
+				45DAFB14257BD72E00AD5DEF /* id */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -595,6 +622,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -656,6 +684,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

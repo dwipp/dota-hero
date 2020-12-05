@@ -11,7 +11,7 @@ class RolesVC: BaseVC, RolesActionProtocol {
     var delegate: RolesDelegate?
     var viewmodel: RolesModelProtocol
     let tableview = UITableView()
-    var selectedRole = "All"
+    var selectedRole = NSLocalizedString("All", comment: "")
     
     init() {
         self.viewmodel = RolesVM()
@@ -32,7 +32,7 @@ class RolesVC: BaseVC, RolesActionProtocol {
     }
     
     private func setup(){
-        self.title = "Filter by role"
+        self.title = NSLocalizedString("Filter by Role", comment: "")
         
         view.addSubview(tableview)
         tableview.tableFooterView = UIView()
