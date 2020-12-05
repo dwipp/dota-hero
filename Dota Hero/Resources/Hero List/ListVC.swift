@@ -44,8 +44,10 @@ class ListVC: BaseVC, ListActionProtocol {
     }
     
     func afterFetchList(error: Error?) {
-        print("yey: \(String(describing: error))")
-        print(self.viewmodel.data)
+        if let err = error {
+            print("yey: \(err)")
+            return
+        }
         self.tableview.reloadData()
     }
 

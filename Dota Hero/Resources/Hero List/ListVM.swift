@@ -24,17 +24,12 @@ class ListVM: ListModelProtocol {
     private var database = Database()
     
     func fetchList() {
-        let decoder: JSONDecoder = {
-            let decoder = JSONDecoder()
-            decoder.keyDecodingStrategy = .convertFromSnakeCase
-            return decoder
-        }()
-        AF.request(APIRouter.heroList).responseDecodable(of: [ListHero].self, decoder: decoder) { response in
+        serveData()
+        AF.request(APIRouter.heroList).responseDecodable(of: [ListHero].self, decoder: Utils().decoder) { response in
             switch response.result{
             case .success(let response):
                 self.database.save(response)
-                self.data = self.fetchListFromDB()
-                self.action?.afterFetchList(error: nil)
+                self.serveData()
                 break
             case .failure(let error):
                 print("error: \(error)")
@@ -44,8 +39,9 @@ class ListVM: ListModelProtocol {
         }
     }
     
-    private func fetchListFromDB() -> [ListHero]{
-        return self.database.fetch(ListHero.self)
+    private func serveData(){
+        self.data = self.database.fetch(ListHero.self)
+        self.action?.afterFetchList(error: nil)
     }
     
 }

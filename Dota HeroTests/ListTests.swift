@@ -10,18 +10,36 @@ import XCTest
 
 class ListTests: XCTestCase {
     let list = ListVM()
+    let database = Database()
     override func setUpWithError() throws {
+        database.deleteAllData()
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
 
     override func tearDownWithError() throws {
+        database.deleteAllData()
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
     
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testSaveAndFetchDB(){
+        let listHero = ListHero()
+        listHero.id = 999999
+        database.save([listHero])
+        let hero = database.fetch(ListHero.self)
+        
+        XCTAssertEqual(hero.last?.id, 999999)
     }
+    
+    func testDeleteDB(){
+        let listHero = ListHero()
+        listHero.id = 999999
+        database.save([listHero])
+        database.delete(ListHero.self, with: 999999)
+        let hero = database.fetch(ListHero.self)
+        
+        XCTAssertNotEqual(hero.last?.id, 999999)
+    }
+    
 
     func testPerformanceExample() throws {
         // This is an example of a performance test case.

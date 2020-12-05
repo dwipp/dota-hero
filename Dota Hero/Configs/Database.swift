@@ -33,12 +33,18 @@ final class Database {
         return arrData
     }
     
-    func delete<T: Object>(_ type:T.Type, with primaryKey:String) {
+    func delete<T: Object>(_ type:T.Type, with primaryKey:Int) {
         let object = realm.object(ofType: type, forPrimaryKey: primaryKey)
         if let object = object {
             try! realm.write{
                 realm.delete(object)
             }
+        }
+    }
+    
+    func deleteAllData(){
+        try! realm.write{
+            realm.deleteAll()
         }
     }
 }
