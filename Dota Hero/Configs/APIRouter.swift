@@ -32,7 +32,6 @@ enum APIRouter: APIConfiguration {
         }
     }
     
-    
     func asURLRequest() throws -> URLRequest {
         var url = try Constants.ProductionServer.baseURL.asURL()
         #if DEBUG

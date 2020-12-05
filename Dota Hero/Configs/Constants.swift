@@ -11,9 +11,11 @@ import Alamofire
 struct Constants {
     struct ProductionServer {
         static let baseURL = "https://api.opendota.com/api"
+        static let url = "https://api.opendota.com"
     }
     struct DevelopmentServer {
         static let baseURL = "https://api.opendota.com/api"
+        static let url = "https://api.opendota.com"
     }
 }
 
@@ -33,4 +35,11 @@ enum ContentType:String {
 enum RequestParams {
     case body(_:Parameters)
     case url(_:Parameters)
+}
+
+enum Code:String {
+    case noInternet = "no-internet"
+    case success = "success"
+    case error = "error"
+    case empty = "empty"
 }
