@@ -22,6 +22,7 @@ class HeroCell: UICollectionViewCell {
     }
     
     func setImage(_ url:String){
+        img.backgroundColor = .skeletonDefault
         let processor = DownsamplingImageProcessor(size: img.bounds.size)
         img.kf.setImage(
             with: URL(string: url),

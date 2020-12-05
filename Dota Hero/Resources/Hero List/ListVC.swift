@@ -130,10 +130,6 @@ extension ListVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
         return CGSize(width: 100, height: 120)
     }
     
-    func collectionSkeletonView(_ skeletonView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
-    }
-    
     func collectionSkeletonView(_ skeletonView: UICollectionView, cellIdentifierForItemAt indexPath: IndexPath) -> ReusableCellIdentifier {
         return "cell"
     }
