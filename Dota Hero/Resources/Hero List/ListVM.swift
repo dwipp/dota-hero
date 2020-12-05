@@ -24,7 +24,7 @@ class ListVM: ListModelProtocol {
     private var database = Database()
     
     func fetchList() {
-        serveData()
+        serveData(isCache: true)
         guard Utils().isReachable() else {
             // no internet connection
             self.action?.afterFetchList(statusCode: Code.noInternet)
@@ -34,7 +34,7 @@ class ListVM: ListModelProtocol {
             switch response.result{
             case .success(let response):
                 self.database.save(response)
-                self.serveData()
+                self.serveData(isCache: false)
                 break
             case .failure(_):
                 self.action?.afterFetchList(statusCode: Code.error)
@@ -43,12 +43,14 @@ class ListVM: ListModelProtocol {
         }
     }
     
-    private func serveData(){
+    private func serveData(isCache:Bool){
         self.data = self.database.fetch(ListHero.self)
-        if self.data.count > 0 {
+        if self.data.count == 0 && isCache {
             self.action?.afterFetchList(statusCode: Code.success)
-        }else {
+        }else if self.data.count == 0 {
             self.action?.afterFetchList(statusCode: Code.empty)
+        }else {
+            self.action?.afterFetchList(statusCode: Code.success)
         }
     }
     
