@@ -33,15 +33,6 @@ final class Database {
         return arrData
     }
     
-    func fetch<T: Object>(_ type: T.Type, filter:NSPredicate) -> [T] {
-        let objects = realm.objects(type).filter(filter)
-        var arrData = [T]()
-        for data in objects {
-            arrData.append(data)
-        }
-        return arrData
-    }
-    
     func delete<T: Object>(_ type:T.Type, with primaryKey:Int) {
         let object = realm.object(ofType: type, forPrimaryKey: primaryKey)
         if let object = object {

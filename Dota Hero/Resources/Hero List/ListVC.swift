@@ -10,14 +10,14 @@ import SnapKit
 
 class ListVC: BaseVC, ListActionProtocol, ErrorDelegate {
     var viewmodel: ListModelProtocol
-    let tableview = UITableView()
+    var collection:UICollectionView?
     var errorView = ErrorView()
     var btnFilter = UIBarButtonItem()
     var role = "All" {
         didSet {
             btnFilter.title = role
             self.viewmodel.fetchList(withRole: role)
-            self.tableview.reloadData()
+            self.collection?.reloadData()
         }
     }
     
@@ -31,6 +31,7 @@ class ListVC: BaseVC, ListActionProtocol, ErrorDelegate {
         self.viewmodel = ListVM()
         super.init(coder: coder)
         self.viewmodel.action = self
+        
     }
     
     override func viewDidLoad() {
@@ -42,16 +43,31 @@ class ListVC: BaseVC, ListActionProtocol, ErrorDelegate {
     private func setup(){
         self.title = "Heroes of Dota"
         
-        view.addSubview(tableview)
-        tableview.tableFooterView = UIView()
-        tableview.delegate = self
-        tableview.dataSource = self
-        tableview.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        tableview.snp.makeConstraints { (make) in
-            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.topMargin)
-            make.left.bottom.right.equalToSuperview()
+        let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.scrollDirection = .vertical
+        flowLayout.minimumLineSpacing = 10
+        flowLayout.minimumInteritemSpacing = 1
+        print("widthhh: \(UIScreen.main.bounds.width)")
+        if UIScreen.main.bounds.width < 375 {
+            flowLayout.sectionInset = UIEdgeInsets(top: 10, left: 5, bottom: 10, right: 5)
+        }else if UIScreen.main.bounds.width < 414 {
+            flowLayout.sectionInset = UIEdgeInsets(top: 10, left: 15, bottom: 10, right: 15)
+        }else {
+            flowLayout.sectionInset = UIEdgeInsets(top: 10, left: 3, bottom: 10, right: 3)
         }
-        errorView = ErrorView(frame: self.tableview.bounds)
+        collection = UICollectionView(frame: CGRect.zero, collectionViewLayout: flowLayout)
+        collection?.register(UINib(nibName: "HeroCell", bundle: nil), forCellWithReuseIdentifier: "cell")
+        collection?.backgroundColor = .clear
+        view.addSubview(collection!)
+        collection?.delegate = self
+        collection?.dataSource = self
+        collection?.snp.makeConstraints { (make) in
+            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.topMargin)
+            make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottomMargin)
+            make.left.equalTo(self.view.safeAreaLayoutGuide.snp.leftMargin)
+            make.right.equalTo(self.view.safeAreaLayoutGuide.snp.rightMargin)
+        }
+        errorView = ErrorView(frame: self.collection!.bounds)
         errorView.delegate = self
         
         btnFilter = UIBarButtonItem(title: role, style: .plain, target: self, action: #selector(self.didTapRoles(_:)))
@@ -71,12 +87,12 @@ class ListVC: BaseVC, ListActionProtocol, ErrorDelegate {
         switch statusCode {
         case .error, .noInternet, .empty:
             if self.viewmodel.data.count == 0 {
-                self.tableview.backgroundView = errorView
+                self.collection?.backgroundView = errorView
             }
             break
         default:
-            self.tableview.backgroundView = nil
-            self.tableview.reloadData()
+            self.collection?.backgroundView = nil
+            self.collection?.reloadData()
             break
         }
         
@@ -88,16 +104,21 @@ class ListVC: BaseVC, ListActionProtocol, ErrorDelegate {
 
 }
 
-extension ListVC: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        self.viewmodel.data.count
+extension ListVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.viewmodel.data.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = "\(indexPath.row+1). \(self.viewmodel.data[indexPath.row].localizedName)"
-        cell.accessoryType = .disclosureIndicator
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! HeroCell
+        cell.setImage(Constants.ProductionServer.url+self.viewmodel.data[indexPath.row].img)
+        cell.lblAttackType.text = self.viewmodel.data[indexPath.row].attackType
+        cell.lblName.text = self.viewmodel.data[indexPath.row].localizedName
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 100, height: 120)
     }
 }
 

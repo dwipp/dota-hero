@@ -11,9 +11,11 @@ import Alamofire
 struct Constants {
     struct ProductionServer {
         static let baseURL = "https://api.opendota.com/api"
+        static let url = "https://api.opendota.com"
     }
     struct DevelopmentServer {
         static let baseURL = "https://api.opendota.com/api"
+        static let url = "https://api.opendota.com"
     }
 }
 
