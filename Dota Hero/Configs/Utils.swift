@@ -19,4 +19,5 @@ struct Utils {
     func isReachable() -> Bool {
         return reachability.isReachable
     }
+    
 }

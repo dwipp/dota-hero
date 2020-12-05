@@ -29,6 +29,10 @@
 		45B05070257B51D000128B89 /* empty.json in Resources */ = {isa = PBXBuildFile; fileRef = 45B0506D257B51D000128B89 /* empty.json */; };
 		45B05071257B51D000128B89 /* error.json in Resources */ = {isa = PBXBuildFile; fileRef = 45B0506E257B51D000128B89 /* error.json */; };
 		45B05072257B51D000128B89 /* no-internet.json in Resources */ = {isa = PBXBuildFile; fileRef = 45B0506F257B51D000128B89 /* no-internet.json */; };
+		45B05078257B609C00128B89 /* RolesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B05077257B609C00128B89 /* RolesVC.swift */; };
+		45B0507D257B60A600128B89 /* RolesVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B0507C257B60A600128B89 /* RolesVM.swift */; };
+		45B05082257B60B900128B89 /* RolesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B05081257B60B900128B89 /* RolesTests.swift */; };
+		45DAFAE7257B6B4700AD5DEF /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DAFAE6257B6B4700AD5DEF /* Extensions.swift */; };
 		620BD010465851F529FC0068 /* Pods_Dota_HeroTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D11EECAEC8DD0A24156D377B /* Pods_Dota_HeroTests.framework */; };
 		9B4873CE8E6CC92E1A82515C /* Pods_Dota_Hero.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95D734B449BE9B6060328940 /* Pods_Dota_Hero.framework */; };
 		E295E656035A9BD14B51704E /* Pods_Dota_Hero_Dota_HeroUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7E521EA6D7C5D53E50B25C6 /* Pods_Dota_Hero_Dota_HeroUITests.framework */; };
@@ -82,6 +86,10 @@
 		45B0506D257B51D000128B89 /* empty.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = empty.json; sourceTree = "<group>"; };
 		45B0506E257B51D000128B89 /* error.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = error.json; sourceTree = "<group>"; };
 		45B0506F257B51D000128B89 /* no-internet.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "no-internet.json"; sourceTree = "<group>"; };
+		45B05077257B609C00128B89 /* RolesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RolesVC.swift; sourceTree = "<group>"; };
+		45B0507C257B60A600128B89 /* RolesVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RolesVM.swift; sourceTree = "<group>"; };
+		45B05081257B60B900128B89 /* RolesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RolesTests.swift; sourceTree = "<group>"; };
+		45DAFAE6257B6B4700AD5DEF /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		89747CF412AE40EADE3E76AA /* Pods-Dota Hero.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dota Hero.debug.xcconfig"; path = "Target Support Files/Pods-Dota Hero/Pods-Dota Hero.debug.xcconfig"; sourceTree = "<group>"; };
 		91F72B96F8508F9EC663CAA2 /* Pods-Dota HeroTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dota HeroTests.debug.xcconfig"; path = "Target Support Files/Pods-Dota HeroTests/Pods-Dota HeroTests.debug.xcconfig"; sourceTree = "<group>"; };
 		95D734B449BE9B6060328940 /* Pods_Dota_Hero.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Dota_Hero.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -150,6 +158,7 @@
 				4594D1792579BB16006BFA5E /* APIRouter.swift */,
 				4567323A2579E7AA006D46B3 /* Database.swift */,
 				45B0505F257B0E3200128B89 /* Utils.swift */,
+				45DAFAE6257B6B4700AD5DEF /* Extensions.swift */,
 			);
 			path = Configs;
 			sourceTree = "<group>";
@@ -168,6 +177,7 @@
 		4594D1B72579DF36006BFA5E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				45B05076257B605700128B89 /* Roles */,
 				4594D1B82579DF44006BFA5E /* Hero Detail */,
 				4594D1912579C1C2006BFA5E /* Hero List */,
 			);
@@ -227,6 +237,7 @@
 				4599744E2579B63C00D805DF /* Info.plist */,
 				4594D1A42579C4B9006BFA5E /* ListTests.swift */,
 				4594D1AF2579DA0F006BFA5E /* APITests.swift */,
+				45B05081257B60B900128B89 /* RolesTests.swift */,
 			);
 			path = "Dota HeroTests";
 			sourceTree = "<group>";
@@ -248,6 +259,15 @@
 				45B0506F257B51D000128B89 /* no-internet.json */,
 			);
 			path = Lotties;
+			sourceTree = "<group>";
+		};
+		45B05076257B605700128B89 /* Roles */ = {
+			isa = PBXGroup;
+			children = (
+				45B05077257B609C00128B89 /* RolesVC.swift */,
+				45B0507C257B60A600128B89 /* RolesVM.swift */,
+			);
+			path = Roles;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -500,8 +520,11 @@
 				459974382579B63C00D805DF /* SceneDelegate.swift in Sources */,
 				45B05068257B40CA00128B89 /* ErrorView.swift in Sources */,
 				45B05060257B0E3200128B89 /* Utils.swift in Sources */,
+				45B05078257B609C00128B89 /* RolesVC.swift in Sources */,
+				45DAFAE7257B6B4700AD5DEF /* Extensions.swift in Sources */,
 				4594D1932579C3C4006BFA5E /* BaseVC.swift in Sources */,
 				4567323B2579E7AA006D46B3 /* Database.swift in Sources */,
+				45B0507D257B60A600128B89 /* RolesVM.swift in Sources */,
 				4594D1702579BAC7006BFA5E /* APIConfiguration.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -513,6 +536,7 @@
 				4599744D2579B63C00D805DF /* Dota_HeroTests.swift in Sources */,
 				4594D1A52579C4B9006BFA5E /* ListTests.swift in Sources */,
 				4594D1B02579DA0F006BFA5E /* APITests.swift in Sources */,
+				45B05082257B60B900128B89 /* RolesTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
