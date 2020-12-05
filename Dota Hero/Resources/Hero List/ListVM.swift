@@ -15,10 +15,13 @@ protocol ListActionProtocol {
 protocol ListModelProtocol {
     var action: ListActionProtocol? {get set}
     func fetchList()
+    var data:[ListHero] {get}
 }
 
 class ListVM: ListModelProtocol {
     var action: ListActionProtocol?
+    private (set) var data = [ListHero]()
+    private var database = Database()
     
     func fetchList() {
         let decoder: JSONDecoder = {
@@ -29,7 +32,8 @@ class ListVM: ListModelProtocol {
         AF.request(APIRouter.heroList).responseDecodable(of: [ListHero].self, decoder: decoder) { response in
             switch response.result{
             case .success(let response):
-                print("response: \(response)")
+                self.database.save(response)
+                self.data = self.fetchListFromDB()
                 self.action?.afterFetchList(error: nil)
                 break
             case .failure(let error):
@@ -38,6 +42,10 @@ class ListVM: ListModelProtocol {
                 break
             }
         }
+    }
+    
+    private func fetchListFromDB() -> [ListHero]{
+        return self.database.fetch(ListHero.self)
     }
     
 }

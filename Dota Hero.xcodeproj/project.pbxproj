@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4567323B2579E7AA006D46B3 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4567323A2579E7AA006D46B3 /* Database.swift */; };
 		4594D1702579BAC7006BFA5E /* APIConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4594D16F2579BAC7006BFA5E /* APIConfiguration.swift */; };
 		4594D1752579BAF6006BFA5E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4594D1742579BAF6006BFA5E /* Constants.swift */; };
 		4594D17A2579BB16006BFA5E /* APIRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4594D1792579BB16006BFA5E /* APIRouter.swift */; };
@@ -14,11 +15,10 @@
 		4594D19B2579C3E3006BFA5E /* ListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4594D19A2579C3E3006BFA5E /* ListVC.swift */; };
 		4594D1A02579C3EC006BFA5E /* ListVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4594D19F2579C3EC006BFA5E /* ListVM.swift */; };
 		4594D1A52579C4B9006BFA5E /* ListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4594D1A42579C4B9006BFA5E /* ListTests.swift */; };
-		4594D1AB2579C4E3006BFA5E /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4594D1AA2579C4E3006BFA5E /* List.swift */; };
+		4594D1AB2579C4E3006BFA5E /* ListHero.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4594D1AA2579C4E3006BFA5E /* ListHero.swift */; };
 		4594D1B02579DA0F006BFA5E /* APITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4594D1AF2579DA0F006BFA5E /* APITests.swift */; };
 		459974362579B63C00D805DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459974352579B63C00D805DF /* AppDelegate.swift */; };
 		459974382579B63C00D805DF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459974372579B63C00D805DF /* SceneDelegate.swift */; };
-		4599743A2579B63C00D805DF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459974392579B63C00D805DF /* ViewController.swift */; };
 		4599743D2579B63C00D805DF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4599743B2579B63C00D805DF /* Main.storyboard */; };
 		4599743F2579B63C00D805DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4599743E2579B63C00D805DF /* Assets.xcassets */; };
 		459974422579B63C00D805DF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 459974402579B63C00D805DF /* LaunchScreen.storyboard */; };
@@ -49,6 +49,7 @@
 /* Begin PBXFileReference section */
 		27541FB9891F6A0B6B5A3662 /* Pods-Dota Hero.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dota Hero.release.xcconfig"; path = "Target Support Files/Pods-Dota Hero/Pods-Dota Hero.release.xcconfig"; sourceTree = "<group>"; };
 		3B42CE21CAD604950324005F /* Pods-Dota HeroTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dota HeroTests.release.xcconfig"; path = "Target Support Files/Pods-Dota HeroTests/Pods-Dota HeroTests.release.xcconfig"; sourceTree = "<group>"; };
+		4567323A2579E7AA006D46B3 /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 		4594D16F2579BAC7006BFA5E /* APIConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConfiguration.swift; sourceTree = "<group>"; };
 		4594D1742579BAF6006BFA5E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		4594D1792579BB16006BFA5E /* APIRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRouter.swift; sourceTree = "<group>"; };
@@ -56,12 +57,11 @@
 		4594D19A2579C3E3006BFA5E /* ListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListVC.swift; sourceTree = "<group>"; };
 		4594D19F2579C3EC006BFA5E /* ListVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListVM.swift; sourceTree = "<group>"; };
 		4594D1A42579C4B9006BFA5E /* ListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTests.swift; sourceTree = "<group>"; };
-		4594D1AA2579C4E3006BFA5E /* List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
+		4594D1AA2579C4E3006BFA5E /* ListHero.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListHero.swift; sourceTree = "<group>"; };
 		4594D1AF2579DA0F006BFA5E /* APITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APITests.swift; sourceTree = "<group>"; };
 		459974322579B63C00D805DF /* Dota Hero.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Dota Hero.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		459974352579B63C00D805DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		459974372579B63C00D805DF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		459974392579B63C00D805DF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		4599743C2579B63C00D805DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4599743E2579B63C00D805DF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		459974412579B63C00D805DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -138,6 +138,7 @@
 				4594D16F2579BAC7006BFA5E /* APIConfiguration.swift */,
 				4594D1742579BAF6006BFA5E /* Constants.swift */,
 				4594D1792579BB16006BFA5E /* APIRouter.swift */,
+				4567323A2579E7AA006D46B3 /* Database.swift */,
 			);
 			path = Configs;
 			sourceTree = "<group>";
@@ -145,18 +146,27 @@
 		4594D1912579C1C2006BFA5E /* Hero List */ = {
 			isa = PBXGroup;
 			children = (
+				4594D1AA2579C4E3006BFA5E /* ListHero.swift */,
 				4594D19A2579C3E3006BFA5E /* ListVC.swift */,
 				4594D19F2579C3EC006BFA5E /* ListVM.swift */,
 			);
 			path = "Hero List";
 			sourceTree = "<group>";
 		};
-		4594D1A92579C4CA006BFA5E /* Models */ = {
+		4594D1B72579DF36006BFA5E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				4594D1AA2579C4E3006BFA5E /* List.swift */,
+				4594D1B82579DF44006BFA5E /* Hero Detail */,
+				4594D1912579C1C2006BFA5E /* Hero List */,
 			);
-			path = Models;
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		4594D1B82579DF44006BFA5E /* Hero Detail */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Hero Detail";
 			sourceTree = "<group>";
 		};
 		459974292579B63C00D805DF = {
@@ -184,17 +194,15 @@
 		459974342579B63C00D805DF /* Dota Hero */ = {
 			isa = PBXGroup;
 			children = (
-				4594D1A92579C4CA006BFA5E /* Models */,
-				4594D1912579C1C2006BFA5E /* Hero List */,
+				4594D1B72579DF36006BFA5E /* Resources */,
 				4594D16E2579BAAB006BFA5E /* Configs */,
 				459974352579B63C00D805DF /* AppDelegate.swift */,
 				459974372579B63C00D805DF /* SceneDelegate.swift */,
-				459974392579B63C00D805DF /* ViewController.swift */,
+				4594D1922579C3C4006BFA5E /* BaseVC.swift */,
 				4599743B2579B63C00D805DF /* Main.storyboard */,
 				4599743E2579B63C00D805DF /* Assets.xcassets */,
 				459974402579B63C00D805DF /* LaunchScreen.storyboard */,
 				459974432579B63C00D805DF /* Info.plist */,
-				4594D1922579C3C4006BFA5E /* BaseVC.swift */,
 			);
 			path = "Dota Hero";
 			sourceTree = "<group>";
@@ -459,13 +467,13 @@
 			files = (
 				4594D1752579BAF6006BFA5E /* Constants.swift in Sources */,
 				4594D17A2579BB16006BFA5E /* APIRouter.swift in Sources */,
-				4599743A2579B63C00D805DF /* ViewController.swift in Sources */,
-				4594D1AB2579C4E3006BFA5E /* List.swift in Sources */,
+				4594D1AB2579C4E3006BFA5E /* ListHero.swift in Sources */,
 				4594D1A02579C3EC006BFA5E /* ListVM.swift in Sources */,
 				459974362579B63C00D805DF /* AppDelegate.swift in Sources */,
 				4594D19B2579C3E3006BFA5E /* ListVC.swift in Sources */,
 				459974382579B63C00D805DF /* SceneDelegate.swift in Sources */,
 				4594D1932579C3C4006BFA5E /* BaseVC.swift in Sources */,
+				4567323B2579E7AA006D46B3 /* Database.swift in Sources */,
 				4594D1702579BAC7006BFA5E /* APIConfiguration.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

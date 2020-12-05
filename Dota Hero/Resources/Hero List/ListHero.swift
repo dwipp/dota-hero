@@ -63,9 +63,17 @@ class ListHero: Object, Decodable {
     @objc dynamic var turboWins:Int = 0
     @objc dynamic var turnRate:Double = 0
     
+    override class func primaryKey() -> String? {
+        return "id"
+    }
+    
     required convenience init(from decoder:Decoder) throws {
         self.init()
         let container = try decoder.container(keyedBy: CodingKeys.self)
+        firstPick = try container.decode(Int.self, forKey: .firstPick)
+        firstWin = try container.decode(Int.self, forKey: .firstWin)
+        id = try container.decode(Int.self, forKey: .id)
+        localizedName = try container.decode(String.self, forKey: .localizedName)
         let rolesArray = try container.decode([String].self, forKey: .roles)
         roles.append(objectsIn: rolesArray)
     }
@@ -87,6 +95,8 @@ class ListHero: Object, Decodable {
         case seventhWin = "7Win"
         case eighthPick = "8Pick"
         case eighthWin = "8Win"
+        case id = "id"
+        case localizedName = "localizedName"
         case roles = "roles"
     }
     
