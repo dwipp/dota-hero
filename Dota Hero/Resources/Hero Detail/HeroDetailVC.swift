@@ -15,6 +15,7 @@ class HeroDetailVC: BaseVC, DetailActionProtocol {
     let containerView = UIImageView()
     let blurLayer = UIVisualEffectView()
     let img = UIImageView()
+    let imgBottom = UIImageView()
     
     init() {
         self.viewmodel = HeroDetailVM()
@@ -30,23 +31,18 @@ class HeroDetailVC: BaseVC, DetailActionProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = hero?.localizedName
-        self.view.backgroundColor = .systemBackground
-//        self.viewmodel.fetchHero(heroID)
+        self.setup()
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2) {
+            self.delaySetup()
+        }
     }
+    
     override func viewWillDisappear(_ animated: Bool) {
         containerView.isHidden = true
         blurLayer.isHidden = true
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        self.setup()
-    }
-    
-    private func setup(){
+    private func delaySetup(){
         guard let hero = hero else{return}
         
         view.addSubview(containerView)
@@ -67,6 +63,35 @@ class HeroDetailVC: BaseVC, DetailActionProtocol {
         blurLayer.snp.makeConstraints { (make) in
             make.top.left.right.height.equalTo(containerView)
         }
+        
+        blurLayer.contentView.addSubview(img)
+        img.contentMode = .scaleAspectFill
+        img.clipsToBounds = true
+        img.layer.cornerRadius = 5
+        img.kf.setImage(with: URL(string: Constants.ProductionServer.url+hero.img), options: [.forceTransition, .transition(.fade(0.5))])
+        img.snp.makeConstraints { (make) in
+            make.top.equalTo(blurLayer.snp.top).offset(10)
+            make.left.equalTo(blurLayer.snp.left).offset(10)
+            make.width.equalTo(150)
+            make.height.equalTo(150)
+        }
+        
+    }
+    
+    private func setup(){
+        guard let hero = hero else{return}
+        
+        self.title = hero.localizedName
+        self.view.backgroundColor = .systemBackground
+        
+        view.addSubview(imgBottom)
+        imgBottom.contentMode = .scaleAspectFit
+        imgBottom.snp.makeConstraints { (make) in
+            make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottomMargin).inset(10)
+            make.left.right.equalToSuperview()
+            make.height.equalTo(70)
+        }
+        imgBottom.image = #imageLiteral(resourceName: "logo_dota")
         
     }
 
