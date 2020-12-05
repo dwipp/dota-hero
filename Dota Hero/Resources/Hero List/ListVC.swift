@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import SkeletonView
 
 class ListVC: BaseVC, ListActionProtocol, ErrorDelegate {
     var viewmodel: ListModelProtocol
@@ -104,21 +105,37 @@ class ListVC: BaseVC, ListActionProtocol, ErrorDelegate {
 
 }
 
-extension ListVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
+extension ListVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, SkeletonCollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.viewmodel.data.count
+        if self.viewmodel.data.count > 0 {
+            return self.viewmodel.data.count
+        }
+        return 5
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! HeroCell
-        cell.setImage(Constants.ProductionServer.url+self.viewmodel.data[indexPath.row].img)
-        cell.lblAttackType.text = self.viewmodel.data[indexPath.row].attackType
-        cell.lblName.text = self.viewmodel.data[indexPath.row].localizedName
+        if self.viewmodel.data.count > 0 {
+            cell.hideSkeleton()
+            cell.setImage(Constants.ProductionServer.url+self.viewmodel.data[indexPath.row].img)
+            cell.lblAttackType.text = self.viewmodel.data[indexPath.row].attackType
+            cell.lblName.text = self.viewmodel.data[indexPath.row].localizedName
+        }else {
+            cell.showAnimatedGradientSkeleton()
+        }
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 100, height: 120)
+    }
+    
+    func collectionSkeletonView(_ skeletonView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func collectionSkeletonView(_ skeletonView: UICollectionView, cellIdentifierForItemAt indexPath: IndexPath) -> ReusableCellIdentifier {
+        return "cell"
     }
 }
 
