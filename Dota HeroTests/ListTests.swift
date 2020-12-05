@@ -13,12 +13,12 @@ class ListTests: XCTestCase {
     let database = Database()
     let heroID = 999999
     override func setUpWithError() throws {
-        database.delete(ListHero.self, with: heroID)
+        database.deleteAllData()
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
 
     override func tearDownWithError() throws {
-        database.delete(ListHero.self, with: heroID)
+        database.deleteAllData()
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
     
@@ -39,6 +39,38 @@ class ListTests: XCTestCase {
         let hero = database.fetch(ListHero.self)
         
         XCTAssertNotEqual(hero.last?.id, heroID)
+    }
+    
+    func testListFilterFound(){
+        let listHero = ListHero()
+        listHero.id = heroID
+        let arr = ["Carry", "Escape", "Nuker"]
+        listHero.roles.append(objectsIn: arr)
+        let listHero1 = ListHero()
+        listHero1.id = heroID+1
+        let arr1 = ["Carry", "Escape", "Initiator"]
+        listHero1.roles.append(objectsIn: arr1)
+        database.save([listHero,listHero1])
+        
+        list.fetchList(withRole: "Initiator")
+        
+        XCTAssertEqual(list.data.first?.id, heroID+1)
+    }
+    
+    func testListFilterNil(){
+        let listHero = ListHero()
+        listHero.id = heroID
+        let arr = ["Carry", "Escape", "Nuker"]
+        listHero.roles.append(objectsIn: arr)
+        let listHero1 = ListHero()
+        listHero1.id = heroID+1
+        let arr1 = ["Carry", "Escape", "Initiator"]
+        listHero1.roles.append(objectsIn: arr1)
+        database.save([listHero,listHero1])
+        
+        list.fetchList(withRole: "Jungler")
+        
+        XCTAssertNil(list.data.first?.id)
     }
     
 

@@ -16,6 +16,7 @@ class ListVC: BaseVC, ListActionProtocol, ErrorDelegate {
     var role = "All" {
         didSet {
             btnFilter.title = role
+            self.viewmodel.fetchList(withRole: role)
             self.tableview.reloadData()
         }
     }

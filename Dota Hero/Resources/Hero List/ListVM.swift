@@ -15,6 +15,7 @@ protocol ListActionProtocol {
 protocol ListModelProtocol {
     var action: ListActionProtocol? {get set}
     func fetchList()
+    func fetchList(withRole role:String)
     var data:[ListHero] {get}
 }
 
@@ -41,6 +42,14 @@ class ListVM: ListModelProtocol {
                 break
             }
         }
+    }
+    
+    func fetchList(withRole role: String) {
+        data = database.fetch(ListHero.self)
+        if role != "All" {
+            data = data.filter{$0.roles.contains(role)}
+        }
+        self.action?.afterFetchList(statusCode: Code.success)
     }
     
     private func serveData(isCache:Bool){
