@@ -64,7 +64,6 @@ class HeroDetailVC: BaseVC, DetailActionProtocol, SuggestedDelegate {
     
     override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
         super.willTransition(to: newCollection, with: coordinator)
-        print("isLandscape: \(UIWindow.isLandscape)")
         profileConstraint(isLandscape: UIWindow.isLandscape)
         suggestedConstraint(isLandscape: !UIWindow.isLandscape)
     }
@@ -83,9 +82,7 @@ class HeroDetailVC: BaseVC, DetailActionProtocol, SuggestedDelegate {
             make.left.equalToSuperview()
             make.right.equalToSuperview()
             let landscapeHeight = (UIScreen.main.bounds.height/2) + 10
-            print("landscapeHeight: \(landscapeHeight)")
             let portraitHeight = (UIScreen.main.bounds.width/2) + 10
-            print("portraitHeight: \(portraitHeight)")
             make.height.equalTo(isLandscape ? landscapeHeight : portraitHeight)
         }
     }
@@ -111,7 +108,6 @@ class HeroDetailVC: BaseVC, DetailActionProtocol, SuggestedDelegate {
     }
     
     func afterFetchSuggestedHeroes() {
-        print("dapat: \(self.viewmodel.heroes)")
         suggestedView.updateData(heroes: self.viewmodel.heroes)
         
     }

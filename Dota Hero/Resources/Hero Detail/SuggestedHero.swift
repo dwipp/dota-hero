@@ -83,7 +83,6 @@ class SuggestedHero: UIView {
 
 extension SuggestedHero: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print("hero: \(self.heroes.count)")
         return self.heroes.count
     }
 
