@@ -14,10 +14,7 @@ class HeroDetailVC: BaseVC, DetailActionProtocol {
     
     let containerView = UIImageView()
     let blurLayer = UIVisualEffectView()
-    let img = UIImageView()
     let imgBottom = UIImageView()
-    let lblName = UILabel()
-    let lblAttackType = UILabel()
     let lblAgi = UILabel()
     let lblValueAgi = UILabel()
     let lblStr = UILabel()
@@ -34,6 +31,7 @@ class HeroDetailVC: BaseVC, DetailActionProtocol {
     let lblValueRoles = UILabel()
     
     var stats = [[UILabel]]()
+    var detailView = DetailView()
     
     init() {
         self.viewmodel = HeroDetailVM()
@@ -74,22 +72,21 @@ class HeroDetailVC: BaseVC, DetailActionProtocol {
             make.height.equalTo(UIScreen.main.bounds.width)
         }
         containerView.kf.setImage(with: URL(string: Constants.ProductionServer.url+hero.img), options: [.forceTransition, .transition(.fade(0.5))], completionHandler:  { result in
-            
-            self.img.kf.setImage(with: URL(string: Constants.ProductionServer.url+hero.img), options: [.forceTransition, .transition(.fade(0.2))])
-            
-            self.lblName.properties(parent: self.blurLayer.contentView, text: hero.localizedName, size: 18, weight: .medium)
-            
-            self.lblName.snp.makeConstraints { (make) in
-                make.top.equalTo(self.img.snp.bottom).offset(10)
-                make.left.equalTo(self.img.snp.left)
-                make.height.equalTo(22)
-            }
-            
-            self.lblAttackType.properties(parent: self.blurLayer.contentView, text: hero.attackType, size: 14, weight: .regular)
-            self.lblAttackType.snp.makeConstraints { (make) in
-                make.top.equalTo(self.lblName.snp.bottom).offset(2)
-                make.left.equalTo(self.img.snp.left)
-                make.height.equalTo(18)
+            self.detailView = DetailView(hero: hero)
+            self.blurLayer.contentView.addSubview(self.detailView)
+            self.detailView.snp.makeConstraints { (make) in
+                make.top.equalToSuperview()
+                make.left.equalToSuperview()
+                if UIScreen.main.bounds.width < 375 {
+                    make.width.equalTo(100)
+                    make.height.equalTo(100)
+                }else if UIScreen.main.bounds.width < 414 {
+                    make.width.equalTo(130)
+                    make.height.equalTo(130)
+                }else {
+                    make.width.equalTo(150)
+                    make.height.equalTo(150)
+                }
             }
             self.generateStats(stats: self.stats)
         })
@@ -100,27 +97,6 @@ class HeroDetailVC: BaseVC, DetailActionProtocol {
         view.addSubview(blurLayer)
         blurLayer.snp.makeConstraints { (make) in
             make.top.left.right.height.equalTo(containerView)
-        }
-        
-        blurLayer.contentView.addSubview(img)
-        img.contentMode = .scaleAspectFill
-        img.clipsToBounds = true
-        img.layer.cornerRadius = 5
-        
-        img.snp.makeConstraints { (make) in
-            make.top.equalTo(blurLayer.snp.top).offset(10)
-            make.left.equalTo(blurLayer.snp.left).offset(10)
-            if UIScreen.main.bounds.width < 375 {
-                make.width.equalTo(100)
-                make.height.equalTo(100)
-            }else if UIScreen.main.bounds.width < 414 {
-                make.width.equalTo(130)
-                make.height.equalTo(130)
-            }else {
-                make.width.equalTo(150)
-                make.height.equalTo(150)
-            }
-            
         }
     }
     
@@ -163,11 +139,11 @@ class HeroDetailVC: BaseVC, DetailActionProtocol {
                 }
                 
                 if UIScreen.main.bounds.width < 375 {
-                    make.left.equalTo(img.snp.right).offset(30)
+                    make.left.equalTo(detailView.snp.right).offset(30)
                 }else if UIScreen.main.bounds.width < 414 {
-                    make.left.equalTo(img.snp.right).offset(50)
+                    make.left.equalTo(detailView.snp.right).offset(50)
                 }else {
-                    make.left.equalTo(img.snp.right).offset(70)
+                    make.left.equalTo(detailView.snp.right).offset(70)
                 }
                 
                 make.height.equalTo(18)

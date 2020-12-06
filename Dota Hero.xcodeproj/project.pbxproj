@@ -17,6 +17,8 @@
 		4594D1A52579C4B9006BFA5E /* ListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4594D1A42579C4B9006BFA5E /* ListTests.swift */; };
 		4594D1AB2579C4E3006BFA5E /* Hero.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4594D1AA2579C4E3006BFA5E /* Hero.swift */; };
 		4594D1B02579DA0F006BFA5E /* APITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4594D1AF2579DA0F006BFA5E /* APITests.swift */; };
+		4598450D257C667400D02339 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4598450C257C667400D02339 /* DetailView.swift */; };
+		45984512257C6C1400D02339 /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45984511257C6C1400D02339 /* StatsView.swift */; };
 		459974362579B63C00D805DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459974352579B63C00D805DF /* AppDelegate.swift */; };
 		459974382579B63C00D805DF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459974372579B63C00D805DF /* SceneDelegate.swift */; };
 		4599743D2579B63C00D805DF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4599743B2579B63C00D805DF /* Main.storyboard */; };
@@ -73,6 +75,8 @@
 		4594D1A42579C4B9006BFA5E /* ListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTests.swift; sourceTree = "<group>"; };
 		4594D1AA2579C4E3006BFA5E /* Hero.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hero.swift; sourceTree = "<group>"; };
 		4594D1AF2579DA0F006BFA5E /* APITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APITests.swift; sourceTree = "<group>"; };
+		4598450C257C667400D02339 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		45984511257C6C1400D02339 /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
 		459974322579B63C00D805DF /* Dota Hero.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Dota Hero.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		459974352579B63C00D805DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		459974372579B63C00D805DF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -204,6 +208,8 @@
 			children = (
 				45DAFB18257BDA7B00AD5DEF /* HeroDetailVM.swift */,
 				45DAFB1D257BDA9500AD5DEF /* HeroDetailVC.swift */,
+				4598450C257C667400D02339 /* DetailView.swift */,
+				45984511257C6C1400D02339 /* StatsView.swift */,
 			);
 			path = "Hero Detail";
 			sourceTree = "<group>";
@@ -556,6 +562,8 @@
 				4594D1932579C3C4006BFA5E /* BaseVC.swift in Sources */,
 				4567323B2579E7AA006D46B3 /* Database.swift in Sources */,
 				45DAFB1E257BDA9500AD5DEF /* HeroDetailVC.swift in Sources */,
+				45984512257C6C1400D02339 /* StatsView.swift in Sources */,
+				4598450D257C667400D02339 /* DetailView.swift in Sources */,
 				45B0507D257B60A600128B89 /* RolesVM.swift in Sources */,
 				4594D1702579BAC7006BFA5E /* APIConfiguration.swift in Sources */,
 			);
