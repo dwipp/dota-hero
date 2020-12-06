@@ -72,7 +72,6 @@ class ListVC: BaseVC, ListActionProtocol, ErrorDelegate {
         errorView.delegate = self
         
         btnFilter = UIBarButtonItem(title: role, style: .plain, target: self, action: #selector(self.didTapRoles(_:)))
-        self.navigationItem.rightBarButtonItem = btnFilter
     }
     
     @objc func didTapRoles(_ sender:UIButton){
@@ -92,6 +91,9 @@ class ListVC: BaseVC, ListActionProtocol, ErrorDelegate {
             }
             break
         default:
+            if self.viewmodel.data.count > 0 {
+                self.navigationItem.rightBarButtonItem = btnFilter
+            }
             self.collection?.backgroundView = nil
             self.collection?.reloadData()
             break
