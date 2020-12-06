@@ -9,6 +9,8 @@ import UIKit
 
 class StatsView: UIView {
     let hero: Hero
+    let lblAttr = UILabel()
+    let lblValueAttr = UILabel()
     let lblAgi = UILabel()
     let lblValueAgi = UILabel()
     let lblStr = UILabel()
@@ -42,6 +44,8 @@ class StatsView: UIView {
     }
     
     private func setup(){
+        lblAttr.text = NSLocalizedString("Attribute", comment: "")
+        lblValueAttr.text = "\(hero.primaryAttr.uppercased())"
         lblAgi.text = NSLocalizedString("Agi", comment: "")
         lblValueAgi.text = "\(hero.baseAgi)"
         lblStr.text = NSLocalizedString("Str", comment: "")
@@ -58,6 +62,7 @@ class StatsView: UIView {
         lblValueRoles.text = "\(hero.roles.joined(separator: ", "))"
         
         stats = [
+            [lblAttr, lblValueAttr],
             [lblAgi, lblValueAgi],
             [lblStr, lblValueStr],
             [lblInt, lblValueInt],
