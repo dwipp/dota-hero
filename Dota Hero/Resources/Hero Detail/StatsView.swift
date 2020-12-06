@@ -11,12 +11,6 @@ class StatsView: UIView {
     let hero: Hero
     let lblAttr = UILabel()
     let lblValueAttr = UILabel()
-    let lblAgi = UILabel()
-    let lblValueAgi = UILabel()
-    let lblStr = UILabel()
-    let lblValueStr = UILabel()
-    let lblInt = UILabel()
-    let lblValueInt = UILabel()
     let lblHealth = UILabel()
     let lblValueHealth = UILabel()
     let lblAttack = UILabel()
@@ -46,12 +40,6 @@ class StatsView: UIView {
     private func setup(){
         lblAttr.text = NSLocalizedString("Attribute", comment: "")
         lblValueAttr.text = "\(hero.primaryAttr.value?.rawValue.uppercased() ?? NSLocalizedString("Unknown", comment: ""))"
-        lblAgi.text = NSLocalizedString("Agi", comment: "")
-        lblValueAgi.text = "\(hero.baseAgi)"
-        lblStr.text = NSLocalizedString("Str", comment: "")
-        lblValueStr.text = "\(hero.baseStr)"
-        lblInt.text = NSLocalizedString("Int", comment: "")
-        lblValueInt.text = "\(hero.baseInt)"
         lblHealth.text = NSLocalizedString("Health", comment: "")
         lblValueHealth.text = "\(hero.baseHealth)"
         lblAttack.text = NSLocalizedString("Max Attack", comment: "")
@@ -63,9 +51,6 @@ class StatsView: UIView {
         
         stats = [
             [lblAttr, lblValueAttr],
-            [lblAgi, lblValueAgi],
-            [lblStr, lblValueStr],
-            [lblInt, lblValueInt],
             [lblHealth, lblValueHealth],
             [lblAttack, lblValueAttack],
             [lblSpeed, lblValueSpeed],

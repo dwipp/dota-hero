@@ -60,19 +60,29 @@ class HeroDetailVC: BaseVC, DetailActionProtocol {
     private func profileSetup(){
         guard let hero = hero else{return}
         
+        let isLandscape = UIDevice.current.orientation.isLandscape
         heroProfile = HeroProfile(hero: hero)
         self.view.addSubview(heroProfile)
         heroProfile.snp.makeConstraints { (make) in
             make.top.equalTo(self.view.safeAreaLayoutGuide.snp.topMargin)
             make.left.equalTo(self.view.safeAreaLayoutGuide.snp.leftMargin)
             make.right.equalTo(self.view.safeAreaLayoutGuide.snp.rightMargin)
-            make.height.equalTo(UIScreen.main.bounds.width)
+            let landscapeHeight = (UIScreen.main.bounds.height/2) + 10
+            let portraitHeight = (UIScreen.main.bounds.width/2) + 10
+            make.height.equalTo(isLandscape ? landscapeHeight : portraitHeight)
         }
     }
     
     private func collectionSetup(){
+        lblSuggested.properties(parent: view, text: "Suggested Heroes", size: 18, weight: .regular)
+        lblSuggested.snp.makeConstraints { (make) in
+            make.top.equalTo(self.heroProfile.snp.bottom).offset(20)
+            make.left.equalToSuperview().offset(10)
+            make.height.equalTo(22)
+        }
+        
         let flowLayout = UICollectionViewFlowLayout()
-        flowLayout.scrollDirection = .horizontal
+        flowLayout.scrollDirection = .vertical
         flowLayout.minimumLineSpacing = 10
         flowLayout.minimumInteritemSpacing = 1
         if UIScreen.main.bounds.width < 375 {
@@ -85,20 +95,17 @@ class HeroDetailVC: BaseVC, DetailActionProtocol {
         collection = UICollectionView(frame: CGRect.zero, collectionViewLayout: flowLayout)
         collection?.register(UINib(nibName: "HeroCell", bundle: nil), forCellWithReuseIdentifier: "cell")
         collection?.backgroundColor = .clear
-        heroProfile.blurLayer.contentView.addSubview(collection!)
+        collection?.isScrollEnabled = false
+        view.addSubview(collection!)
         collection?.delegate = self
         collection?.dataSource = self
         collection?.snp.makeConstraints { (make) in
-            make.bottom.left.right.equalToSuperview()
+            make.top.equalTo(self.lblSuggested.snp.bottom).offset(10)
+            make.left.right.equalToSuperview()
             make.height.equalTo(130)
         }
         
-        lblSuggested.properties(parent: heroProfile.blurLayer.contentView, text: "Suggested Heroes", size: 18, weight: .regular)
-        lblSuggested.snp.makeConstraints { (make) in
-            make.left.equalToSuperview().offset(10)
-            make.bottom.equalTo(collection!.snp.top)
-            make.height.equalTo(22)
-        }
+        
     }
     
     private func setup(){

@@ -33,6 +33,7 @@ class HeroProfile: UIView {
     private func setup(){
         self.addSubview(containerView)
         containerView.contentMode = .scaleAspectFill
+        containerView.clipsToBounds = true
         containerView.contentScaleFactor = 2
         containerView.snp.makeConstraints { (make) in
             make.top.left.right.height.equalToSuperview()
@@ -47,7 +48,7 @@ class HeroProfile: UIView {
         blurLayer.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(blurLayer)
         blurLayer.snp.makeConstraints { (make) in
-            make.top.left.right.height.equalTo(containerView)
+            make.top.left.right.height.equalToSuperview()
         }
     }
 
@@ -57,16 +58,8 @@ class HeroProfile: UIView {
         self.detailView.snp.makeConstraints { (make) in
             make.top.equalToSuperview()
             make.left.equalToSuperview()
-            if UIScreen.main.bounds.width < 375 {
-                make.width.equalTo(100)
-                make.height.equalTo(100)
-            }else if UIScreen.main.bounds.width < 414 {
-                make.width.equalTo(130)
-                make.height.equalTo(130)
-            }else {
-                make.width.equalTo(150)
-                make.height.equalTo(150)
-            }
+            make.width.equalTo(self.detailView.img.snp.width).offset(10)
+            make.height.equalTo(self.blurLayer.snp.height)
         }
         
         self.statsView = StatsView(hero: hero)
@@ -81,6 +74,7 @@ class HeroProfile: UIView {
                 make.left.equalTo(self.detailView.snp.right).offset(70)
             }
             make.width.equalTo(170)
+            make.height.equalTo(self.blurLayer.snp.height)
         }
     }
     
