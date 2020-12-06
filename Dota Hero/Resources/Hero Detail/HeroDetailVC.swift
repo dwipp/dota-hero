@@ -16,6 +16,24 @@ class HeroDetailVC: BaseVC, DetailActionProtocol {
     let blurLayer = UIVisualEffectView()
     let img = UIImageView()
     let imgBottom = UIImageView()
+    let lblName = UILabel()
+    let lblAttackType = UILabel()
+    let lblAgi = UILabel()
+    let lblValueAgi = UILabel()
+    let lblStr = UILabel()
+    let lblValueStr = UILabel()
+    let lblInt = UILabel()
+    let lblValueInt = UILabel()
+    let lblHealth = UILabel()
+    let lblValueHealth = UILabel()
+    let lblAttack = UILabel()
+    let lblValueAttack = UILabel()
+    let lblSpeed = UILabel()
+    let lblValueSpeed = UILabel()
+    let lblRoles = UILabel()
+    let lblValueRoles = UILabel()
+    
+    var stats = [[UILabel]]()
     
     init() {
         self.viewmodel = HeroDetailVM()
@@ -44,6 +62,7 @@ class HeroDetailVC: BaseVC, DetailActionProtocol {
     
     private func delaySetup(){
         guard let hero = hero else{return}
+        self.setupStats()
         
         view.addSubview(containerView)
         containerView.contentMode = .scaleAspectFill
@@ -54,7 +73,26 @@ class HeroDetailVC: BaseVC, DetailActionProtocol {
             make.right.equalTo(self.view.safeAreaLayoutGuide.snp.rightMargin)
             make.height.equalTo(UIScreen.main.bounds.width)
         }
-        containerView.kf.setImage(with: URL(string: Constants.ProductionServer.url+hero.img), options: [.forceTransition, .transition(.fade(0.5))])
+        containerView.kf.setImage(with: URL(string: Constants.ProductionServer.url+hero.img), options: [.forceTransition, .transition(.fade(0.5))], completionHandler:  { result in
+            
+            self.img.kf.setImage(with: URL(string: Constants.ProductionServer.url+hero.img), options: [.forceTransition, .transition(.fade(0.2))])
+            
+            self.lblName.properties(parent: self.blurLayer.contentView, text: hero.localizedName, size: 18, weight: .medium)
+            
+            self.lblName.snp.makeConstraints { (make) in
+                make.top.equalTo(self.img.snp.bottom).offset(10)
+                make.left.equalTo(self.img.snp.left)
+                make.height.equalTo(22)
+            }
+            
+            self.lblAttackType.properties(parent: self.blurLayer.contentView, text: hero.attackType, size: 14, weight: .regular)
+            self.lblAttackType.snp.makeConstraints { (make) in
+                make.top.equalTo(self.lblName.snp.bottom).offset(2)
+                make.left.equalTo(self.img.snp.left)
+                make.height.equalTo(18)
+            }
+            self.generateStats(stats: self.stats)
+        })
         
         let blur = UIBlurEffect(style: .regular)
         blurLayer.effect = blur
@@ -68,20 +106,94 @@ class HeroDetailVC: BaseVC, DetailActionProtocol {
         img.contentMode = .scaleAspectFill
         img.clipsToBounds = true
         img.layer.cornerRadius = 5
-        img.kf.setImage(with: URL(string: Constants.ProductionServer.url+hero.img), options: [.forceTransition, .transition(.fade(0.5))])
+        
         img.snp.makeConstraints { (make) in
             make.top.equalTo(blurLayer.snp.top).offset(10)
             make.left.equalTo(blurLayer.snp.left).offset(10)
-            make.width.equalTo(150)
-            make.height.equalTo(150)
+            if UIScreen.main.bounds.width < 375 {
+                make.width.equalTo(100)
+                make.height.equalTo(100)
+            }else if UIScreen.main.bounds.width < 414 {
+                make.width.equalTo(130)
+                make.height.equalTo(130)
+            }else {
+                make.width.equalTo(150)
+                make.height.equalTo(150)
+            }
+            
         }
+    }
+    
+    private func setupStats(){
+        guard let hero = hero else {return}
         
+        lblAgi.text = NSLocalizedString("Agi", comment: "")
+        lblValueAgi.text = "\(hero.baseAgi)"
+        lblStr.text = NSLocalizedString("Str", comment: "")
+        lblValueStr.text = "\(hero.baseStr)"
+        lblInt.text = NSLocalizedString("Int", comment: "")
+        lblValueInt.text = "\(hero.baseInt)"
+        lblHealth.text = NSLocalizedString("Health", comment: "")
+        lblValueHealth.text = "\(hero.baseHealth)"
+        lblAttack.text = NSLocalizedString("Max Attack", comment: "")
+        lblValueAttack.text = "\(hero.baseAttackMax)"
+        lblSpeed.text = NSLocalizedString("Speed", comment: "")
+        lblValueSpeed.text = "\(hero.moveSpeed)"
+        lblRoles.text = NSLocalizedString("Roles", comment: "")
+        lblValueRoles.text = "\(hero.roles.joined(separator: ", "))"
+        
+        stats = [
+            [lblAgi, lblValueAgi],
+            [lblStr, lblValueStr],
+            [lblInt, lblValueInt],
+            [lblHealth, lblValueHealth],
+            [lblAttack, lblValueAttack],
+            [lblSpeed, lblValueSpeed],
+            [lblRoles, lblValueRoles]]
+    }
+    
+    private func generateStats(stats:[[UILabel]]){
+        for i in 0..<stats.count {
+            stats[i][0].properties(parent: blurLayer.contentView, text: nil, size: 14, weight: .regular)
+            stats[i][0].snp.makeConstraints { (make) in
+                if i == 0 {
+                    make.top.equalTo(self.view.safeAreaLayoutGuide.snp.topMargin).offset(10)
+                }else {
+                    make.top.equalTo(stats[i-1][0].snp.bottom).offset(5)
+                }
+                
+                if UIScreen.main.bounds.width < 375 {
+                    make.left.equalTo(img.snp.right).offset(30)
+                }else if UIScreen.main.bounds.width < 414 {
+                    make.left.equalTo(img.snp.right).offset(50)
+                }else {
+                    make.left.equalTo(img.snp.right).offset(70)
+                }
+                
+                make.height.equalTo(18)
+            }
+            
+            stats[i][1].textAlignment = .right
+            stats[i][1].numberOfLines = 3
+            stats[i][1].properties(parent: blurLayer.contentView, text: nil, size: 14, weight: .regular)
+            stats[i][1].snp.makeConstraints { (make) in
+                make.top.equalTo(stats[i][0])
+                make.right.equalTo(stats[i][0].snp.left).inset(170)
+                if stats[i][1] == lblValueRoles {
+                    make.width.equalTo(110)
+                }
+            }
+        }
     }
     
     private func setup(){
         guard let hero = hero else{return}
         
-        self.title = hero.localizedName
+        let titleImg = UIImageView()
+        titleImg.kf.setImage(with: URL(string: Constants.ProductionServer.url + hero.icon))
+        titleImg.frame = CGRect(x: 0, y: 0, width: 35, height: 35)
+        self.navigationItem.titleView = titleImg
+        
         self.view.backgroundColor = .systemBackground
         
         view.addSubview(imgBottom)
@@ -89,7 +201,7 @@ class HeroDetailVC: BaseVC, DetailActionProtocol {
         imgBottom.snp.makeConstraints { (make) in
             make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottomMargin).inset(10)
             make.left.right.equalToSuperview()
-            make.height.equalTo(70)
+            make.height.equalTo(30)
         }
         imgBottom.image = #imageLiteral(resourceName: "logo_dota")
         

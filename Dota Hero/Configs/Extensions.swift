@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 extension Array where Element: Hashable {
     var uniques: Array {
@@ -18,5 +19,15 @@ extension Array where Element: Hashable {
             }
         }
         return buffer
+    }
+}
+
+extension UILabel {
+    func properties(parent:UIView, text:String?, size:CGFloat, weight:UIFont.Weight){
+        parent.addSubview(self)
+        if let text = text {
+            self.text = NSLocalizedString(text, comment: "")
+        }
+        self.font = UIFont.systemFont(ofSize: size, weight: weight)
     }
 }
