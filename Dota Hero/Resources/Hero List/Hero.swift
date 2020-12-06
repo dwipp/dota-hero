@@ -8,6 +8,26 @@
 import Foundation
 import RealmSwift
 
+
+
+enum HeroAttribute: String, RealmEnum, Codable {
+    case agi, str, int
+    
+    init(from decoder: Decoder) throws {
+        let attr = try decoder.singleValueContainer().decode(String.self)
+        switch attr {
+        case "agi":
+            self = .agi
+        case "str":
+            self = .str
+        case "int":
+            self = .int
+        default:
+            self = .agi
+        }
+    }
+}
+
 class Hero: Object, Decodable {
     @objc dynamic var firstPick:Int = 0
     @objc dynamic var firstWin:Int = 0
@@ -52,7 +72,7 @@ class Hero: Object, Decodable {
     @objc dynamic var name:String = ""
     @objc dynamic var nullPick:Int = 0
     @objc dynamic var nullWin:Int = 0
-    @objc dynamic var primaryAttr:String = ""
+    var primaryAttr = RealmOptional<HeroAttribute>()
     @objc dynamic var proBan:Int = 0
     @objc dynamic var proPick:Int = 0
     @objc dynamic var proWin:Int = 0
@@ -113,7 +133,8 @@ class Hero: Object, Decodable {
         localizedName = try container.decode(String.self, forKey: .localizedName)
         moveSpeed = try container.decode(Int.self, forKey: .moveSpeed)
         name = try container.decode(String.self, forKey: .name)
-        primaryAttr = try container.decode(String.self, forKey: .primaryAttr)
+        let attr = try container.decode(HeroAttribute.self, forKey: .primaryAttr)
+        primaryAttr.value = attr
         proBan = try container.decode(Int.self, forKey: .proBan)
         proPick = try container.decode(Int.self, forKey: .proPick)
         proWin = try container.decode(Int.self, forKey: .proWin)

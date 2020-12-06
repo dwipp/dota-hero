@@ -45,7 +45,7 @@ class StatsView: UIView {
     
     private func setup(){
         lblAttr.text = NSLocalizedString("Attribute", comment: "")
-        lblValueAttr.text = "\(hero.primaryAttr.uppercased())"
+        lblValueAttr.text = "\(hero.primaryAttr.value?.rawValue.uppercased() ?? NSLocalizedString("Unknown", comment: ""))"
         lblAgi.text = NSLocalizedString("Agi", comment: "")
         lblValueAgi.text = "\(hero.baseAgi)"
         lblStr.text = NSLocalizedString("Str", comment: "")
