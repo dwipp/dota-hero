@@ -41,7 +41,7 @@ class SuggestedHero: UIView {
     private func setup(){
         lblSuggested.properties(parent: self, text: "Suggested Heroes", size: 18, weight: .regular)
         lblSuggested.snp.makeConstraints { (make) in
-            make.top.equalToSuperview().offset(20)
+            make.top.equalToSuperview()
             make.left.equalToSuperview().offset(10)
             make.height.equalTo(22)
         }
@@ -53,7 +53,7 @@ class SuggestedHero: UIView {
         if UIScreen.main.bounds.width < 375 {
             flowLayout.sectionInset = UIEdgeInsets(top: 10, left: 5, bottom: 10, right: 5)
         }else if UIScreen.main.bounds.width < 414 {
-            flowLayout.sectionInset = UIEdgeInsets(top: 10, left: 15, bottom: 10, right: 15)
+            flowLayout.sectionInset = UIEdgeInsets(top: 10, left: 5, bottom: 10, right: 5)
         }else {
             flowLayout.sectionInset = UIEdgeInsets(top: 10, left: 3, bottom: 10, right: 3)
         }
@@ -64,17 +64,9 @@ class SuggestedHero: UIView {
         self.addSubview(collection!)
         collection?.delegate = self
         collection?.dataSource = self
-        let isLandscape = UIDevice.current.orientation.isLandscape
         collection?.snp.makeConstraints { (make) in
-            if isLandscape {
-                make.top.equalTo(self.safeAreaLayoutGuide.snp.topMargin).offset(10)
-                make.right.equalTo(self.safeAreaLayoutGuide.snp.rightMargin).inset(10)
-                make.left.greaterThanOrEqualToSuperview()
-            }else {
-                make.top.equalTo(self.lblSuggested.snp.bottom).offset(10)
-                make.left.equalTo(self.safeAreaLayoutGuide.snp.leftMargin)
-                make.right.greaterThanOrEqualToSuperview()
-            }
+            make.top.equalTo(self.lblSuggested.snp.bottom)
+            make.left.equalTo(self.safeAreaLayoutGuide.snp.leftMargin)
             make.height.equalTo(130)
             make.width.equalTo(320)
             

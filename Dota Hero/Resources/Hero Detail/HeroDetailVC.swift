@@ -33,55 +33,12 @@ class HeroDetailVC: BaseVC, DetailActionProtocol, SuggestedDelegate {
         self.setup()
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2) {
             self.profileSetup()
-            self.collectionSetup()
+            self.suggestedSetup()
         }
-    }
-    /*
-    override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
-        super.willTransition(to: newCollection, with: coordinator)
-        let isLandscape = UIDevice.current.orientation.isLandscape
-        
-        heroProfile.snp.makeConstraints { (make) in
-            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.topMargin)
-            make.left.equalToSuperview()
-            make.right.equalToSuperview()
-            let landscapeHeight = (UIScreen.main.bounds.height/2) + 10
-            let portraitHeight = (UIScreen.main.bounds.width/2) + 10
-            make.height.equalTo(isLandscape ? landscapeHeight : portraitHeight)
-        }
-        
-//        collection?.snp.makeConstraints { (make) in
-//            if isLandscape {
-//                make.top.equalTo(self.view.safeAreaLayoutGuide.snp.topMargin).offset(10)
-//                make.right.equalTo(self.view.safeAreaLayoutGuide.snp.rightMargin).inset(10)
-//                make.left.greaterThanOrEqualToSuperview()
-//            }else {
-//                make.top.equalTo(isLandscape ? self.view.safeAreaLayoutGuide.snp.topMargin : self.lblSuggested.snp.bottom).offset(10)
-//                make.left.equalTo(self.view.safeAreaLayoutGuide.snp.leftMargin)
-//                make.right.greaterThanOrEqualToSuperview()
-//            }
-//
-//        }
-    }
-    */
-    override func viewWillDisappear(_ animated: Bool) {
-        heroProfile.isHidden = true
     }
     
-    private func profileSetup(){
-        guard let hero = hero else{return}
-        
-        let isLandscape = UIDevice.current.orientation.isLandscape
-        heroProfile = HeroProfile(hero: hero)
-        self.view.addSubview(heroProfile)
-        heroProfile.snp.makeConstraints { (make) in
-            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.topMargin)
-            make.left.equalToSuperview()
-            make.right.equalToSuperview()
-            let landscapeHeight = (UIScreen.main.bounds.height/2) + 10
-            let portraitHeight = (UIScreen.main.bounds.width/2) + 10
-            make.height.equalTo(isLandscape ? landscapeHeight : portraitHeight)
-        }
+    override func viewWillDisappear(_ animated: Bool) {
+        heroProfile.isHidden = true
     }
     
     private func setup(){
@@ -105,14 +62,51 @@ class HeroDetailVC: BaseVC, DetailActionProtocol, SuggestedDelegate {
         imgBottom.image = #imageLiteral(resourceName: "logo_dota")
     }
     
-    func collectionSetup(){
+    override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.willTransition(to: newCollection, with: coordinator)
+        print("isLandscape: \(UIWindow.isLandscape)")
+        profileConstraint(isLandscape: UIWindow.isLandscape)
+        suggestedConstraint(isLandscape: !UIWindow.isLandscape)
+    }
+    
+    private func profileSetup(){
+        guard let hero = hero else{return}
+        
+        heroProfile = HeroProfile(hero: hero)
+        self.view.addSubview(heroProfile)
+        profileConstraint(isLandscape: UIWindow.isLandscape)
+    }
+    
+    private func profileConstraint(isLandscape:Bool){
+        heroProfile.snp.remakeConstraints { (make) in
+            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.topMargin)
+            make.left.equalToSuperview()
+            make.right.equalToSuperview()
+            let landscapeHeight = (UIScreen.main.bounds.height/2) + 10
+            print("landscapeHeight: \(landscapeHeight)")
+            let portraitHeight = (UIScreen.main.bounds.width/2) + 10
+            print("portraitHeight: \(portraitHeight)")
+            make.height.equalTo(isLandscape ? landscapeHeight : portraitHeight)
+        }
+    }
+    
+    func suggestedSetup(){
         suggestedView = SuggestedHero(heroes: self.viewmodel.heroes)
         suggestedView.delegate = self
         self.view.addSubview(suggestedView)
-        suggestedView.snp.makeConstraints { (make) in
-            make.top.equalTo(self.heroProfile.snp.bottom).offset(10)
-            make.left.equalTo(self.view.safeAreaLayoutGuide.snp.leftMargin)
-            make.right.lessThanOrEqualToSuperview()
+        suggestedConstraint(isLandscape: UIWindow.isLandscape)
+    }
+    
+    func suggestedConstraint(isLandscape:Bool){
+        suggestedView.snp.remakeConstraints { (make) in
+            make.top.equalTo(isLandscape ? self.view.safeAreaLayoutGuide.snp.topMargin : self.heroProfile.snp.bottom).offset(10)
+            if isLandscape {
+//                make.left.lessThanOrEqualToSuperview()
+                make.right.equalTo(self.view.safeAreaLayoutGuide.snp.rightMargin)
+            }else {
+                make.left.equalTo(self.view.safeAreaLayoutGuide.snp.leftMargin)
+//                make.right.lessThanOrEqualToSuperview()
+            }
             make.height.equalTo(180)
             make.width.equalTo(320)
         }
@@ -130,3 +124,4 @@ class HeroDetailVC: BaseVC, DetailActionProtocol, SuggestedDelegate {
     }
 
 }
+

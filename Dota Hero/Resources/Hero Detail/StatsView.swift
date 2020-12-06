@@ -74,7 +74,7 @@ class StatsView: UIView {
             }
             
             stats[i][1].textAlignment = .right
-            stats[i][1].numberOfLines = 3
+            stats[i][1].numberOfLines = 0
             stats[i][1].properties(parent: self, text: nil, size: 14, weight: .regular)
             stats[i][1].snp.makeConstraints { (make) in
                 make.top.equalTo(stats[i][0])
