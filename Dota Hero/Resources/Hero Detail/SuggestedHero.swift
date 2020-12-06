@@ -50,9 +50,10 @@ class SuggestedHero: UIView {
         flowLayout.scrollDirection = .vertical
         flowLayout.minimumLineSpacing = 10
         flowLayout.minimumInteritemSpacing = 1
-        if UIScreen.main.bounds.width < 375 {
+        
+        if Utils().deviceWidth < 375 {
             flowLayout.sectionInset = UIEdgeInsets(top: 10, left: 5, bottom: 10, right: 5)
-        }else if UIScreen.main.bounds.width < 414 {
+        }else if Utils().deviceWidth < 414 {
             flowLayout.sectionInset = UIEdgeInsets(top: 10, left: 5, bottom: 10, right: 5)
         }else {
             flowLayout.sectionInset = UIEdgeInsets(top: 10, left: 3, bottom: 10, right: 3)
@@ -91,7 +92,13 @@ extension SuggestedHero: UICollectionViewDelegate, UICollectionViewDataSource, U
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 100, height: 120)
+        if Utils().deviceWidth < 375 {
+            return CGSize(width: 70, height: 84)
+        }else if Utils().deviceWidth < 414 {
+            return CGSize(width: 80, height: 96)
+        }else {
+            return CGSize(width: 100, height: 120)
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

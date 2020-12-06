@@ -49,9 +49,9 @@ class ListVC: BaseVC, ListActionProtocol, ErrorDelegate {
         flowLayout.scrollDirection = .vertical
         flowLayout.minimumLineSpacing = 10
         flowLayout.minimumInteritemSpacing = 1
-        if UIScreen.main.bounds.width < 375 {
+        if Utils().deviceWidth < 375 {
             flowLayout.sectionInset = UIEdgeInsets(top: 10, left: 5, bottom: 10, right: 5)
-        }else if UIScreen.main.bounds.width < 414 {
+        }else if Utils().deviceWidth < 414 {
             flowLayout.sectionInset = UIEdgeInsets(top: 10, left: 15, bottom: 10, right: 15)
         }else {
             flowLayout.sectionInset = UIEdgeInsets(top: 10, left: 3, bottom: 10, right: 3)

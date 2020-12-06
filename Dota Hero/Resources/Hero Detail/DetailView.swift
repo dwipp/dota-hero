@@ -35,12 +35,11 @@ class DetailView: UIView {
         img.clipsToBounds = true
         img.layer.cornerRadius = 5
         self.img.kf.setImage(with: URL(string: Constants.ProductionServer.url+hero.img), options: [.forceTransition, .transition(.fade(0.2))])
-        let width = UIWindow.isLandscape ? UIScreen.main.bounds.height : UIScreen.main.bounds.width
         img.snp.makeConstraints { (make) in
             make.top.equalTo(self.snp.top).offset(10)
             make.left.equalTo(self.snp.left).offset(10)
-            make.width.equalTo((width/2)-60)
-            make.height.equalTo((width/2)-60)
+            make.width.equalTo((Utils().deviceWidth/2)-60)
+            make.height.equalTo((Utils().deviceWidth/2)-60)
         }
         
         self.lblName.properties(parent: self, text: hero.localizedName, size: 18, weight: .bold)
