@@ -16,6 +16,7 @@ class SuggestedHero: UIView {
     let lblSuggested = UILabel()
     var collection: UICollectionView?
     var delegate: SuggestedDelegate?
+    var cellWidth = 100
     
     init() {
         self.heroes = []
@@ -38,7 +39,18 @@ class SuggestedHero: UIView {
         collection?.reloadData()
     }
     
+    private func cellWidthSetup(){
+        if Utils().deviceWidth < 375 {
+            cellWidth = 70
+        }else if Utils().deviceWidth < 414 {
+            cellWidth = 80
+        }else {
+            cellWidth = 100
+        }
+    }
+    
     private func setup(){
+        cellWidthSetup()
         lblSuggested.properties(parent: self, text: "Suggested Heroes", size: 18, weight: .regular)
         lblSuggested.snp.makeConstraints { (make) in
             make.top.equalToSuperview()
@@ -50,14 +62,7 @@ class SuggestedHero: UIView {
         flowLayout.scrollDirection = .vertical
         flowLayout.minimumLineSpacing = 10
         flowLayout.minimumInteritemSpacing = 1
-        
-        if Utils().deviceWidth < 375 {
-            flowLayout.sectionInset = UIEdgeInsets(top: 10, left: 5, bottom: 10, right: 5)
-        }else if Utils().deviceWidth < 414 {
-            flowLayout.sectionInset = UIEdgeInsets(top: 10, left: 5, bottom: 10, right: 5)
-        }else {
-            flowLayout.sectionInset = UIEdgeInsets(top: 10, left: 3, bottom: 10, right: 3)
-        }
+        flowLayout.sectionInset = UIEdgeInsets(top: 10, left: 5, bottom: 10, right: 5)
         collection = UICollectionView(frame: CGRect.zero, collectionViewLayout: flowLayout)
         collection?.register(UINib(nibName: "HeroCell", bundle: nil), forCellWithReuseIdentifier: "cell")
         collection?.backgroundColor = .clear
@@ -69,7 +74,7 @@ class SuggestedHero: UIView {
             make.top.equalTo(self.lblSuggested.snp.bottom)
             make.left.equalTo(self.safeAreaLayoutGuide.snp.leftMargin)
             make.height.equalTo(130)
-            make.width.equalTo(320)
+            make.width.equalTo((cellWidth*3)+20)
             
         }
     }
