@@ -8,14 +8,13 @@
 import UIKit
 import Kingfisher
 
-class HeroDetailVC: BaseVC, DetailActionProtocol {
+class HeroDetailVC: BaseVC, DetailActionProtocol, SuggestedDelegate {
     private var viewmodel: DetailModelProtocol
     var delegate: DetailDelegate?
     var hero: Hero?
     let imgBottom = UIImageView()
     var heroProfile = HeroProfile()
-    let lblSuggested = UILabel()
-    var collection: UICollectionView?
+    var suggestedView = SuggestedHero()
     
     init() {
         self.viewmodel = HeroDetailVM()
@@ -37,22 +36,34 @@ class HeroDetailVC: BaseVC, DetailActionProtocol {
             self.collectionSetup()
         }
     }
-    
-//    override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
-//        super.willTransition(to: newCollection, with: coordinator)
-//        let isLandscape = UIDevice.current.orientation.isLandscape
-//        collection?.snp.updateConstraints({ (update) in
+    /*
+    override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.willTransition(to: newCollection, with: coordinator)
+        let isLandscape = UIDevice.current.orientation.isLandscape
+        
+        heroProfile.snp.makeConstraints { (make) in
+            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.topMargin)
+            make.left.equalToSuperview()
+            make.right.equalToSuperview()
+            let landscapeHeight = (UIScreen.main.bounds.height/2) + 10
+            let portraitHeight = (UIScreen.main.bounds.width/2) + 10
+            make.height.equalTo(isLandscape ? landscapeHeight : portraitHeight)
+        }
+        
+//        collection?.snp.makeConstraints { (make) in
 //            if isLandscape {
-//                update.right.equalToSuperview()
-//                update.top.equalToSuperview()
-////                make.left.equalTo(heroProfile.statsView.snp.right).offset(10)
+//                make.top.equalTo(self.view.safeAreaLayoutGuide.snp.topMargin).offset(10)
+//                make.right.equalTo(self.view.safeAreaLayoutGuide.snp.rightMargin).inset(10)
+//                make.left.greaterThanOrEqualToSuperview()
 //            }else {
-//                update.bottom.left.right.equalToSuperview()
+//                make.top.equalTo(isLandscape ? self.view.safeAreaLayoutGuide.snp.topMargin : self.lblSuggested.snp.bottom).offset(10)
+//                make.left.equalTo(self.view.safeAreaLayoutGuide.snp.leftMargin)
+//                make.right.greaterThanOrEqualToSuperview()
 //            }
-//            update.height.equalTo(130)
-//        })
-//    }
-    
+//
+//        }
+    }
+    */
     override func viewWillDisappear(_ animated: Bool) {
         heroProfile.isHidden = true
     }
@@ -65,47 +76,12 @@ class HeroDetailVC: BaseVC, DetailActionProtocol {
         self.view.addSubview(heroProfile)
         heroProfile.snp.makeConstraints { (make) in
             make.top.equalTo(self.view.safeAreaLayoutGuide.snp.topMargin)
-            make.left.equalTo(self.view.safeAreaLayoutGuide.snp.leftMargin)
-            make.right.equalTo(self.view.safeAreaLayoutGuide.snp.rightMargin)
+            make.left.equalToSuperview()
+            make.right.equalToSuperview()
             let landscapeHeight = (UIScreen.main.bounds.height/2) + 10
             let portraitHeight = (UIScreen.main.bounds.width/2) + 10
             make.height.equalTo(isLandscape ? landscapeHeight : portraitHeight)
         }
-    }
-    
-    private func collectionSetup(){
-        lblSuggested.properties(parent: view, text: "Suggested Heroes", size: 18, weight: .regular)
-        lblSuggested.snp.makeConstraints { (make) in
-            make.top.equalTo(self.heroProfile.snp.bottom).offset(20)
-            make.left.equalToSuperview().offset(10)
-            make.height.equalTo(22)
-        }
-        
-        let flowLayout = UICollectionViewFlowLayout()
-        flowLayout.scrollDirection = .vertical
-        flowLayout.minimumLineSpacing = 10
-        flowLayout.minimumInteritemSpacing = 1
-        if UIScreen.main.bounds.width < 375 {
-            flowLayout.sectionInset = UIEdgeInsets(top: 10, left: 5, bottom: 10, right: 5)
-        }else if UIScreen.main.bounds.width < 414 {
-            flowLayout.sectionInset = UIEdgeInsets(top: 10, left: 15, bottom: 10, right: 15)
-        }else {
-            flowLayout.sectionInset = UIEdgeInsets(top: 10, left: 3, bottom: 10, right: 3)
-        }
-        collection = UICollectionView(frame: CGRect.zero, collectionViewLayout: flowLayout)
-        collection?.register(UINib(nibName: "HeroCell", bundle: nil), forCellWithReuseIdentifier: "cell")
-        collection?.backgroundColor = .clear
-        collection?.isScrollEnabled = false
-        view.addSubview(collection!)
-        collection?.delegate = self
-        collection?.dataSource = self
-        collection?.snp.makeConstraints { (make) in
-            make.top.equalTo(self.lblSuggested.snp.bottom).offset(10)
-            make.left.right.equalToSuperview()
-            make.height.equalTo(130)
-        }
-        
-        
     }
     
     private func setup(){
@@ -129,35 +105,28 @@ class HeroDetailVC: BaseVC, DetailActionProtocol {
         imgBottom.image = #imageLiteral(resourceName: "logo_dota")
     }
     
-    func afterFetchSuggestedHeroes() {
-        print("dapat: \(self.viewmodel.heroes)")
-        self.collection?.reloadData()
-    }
-
-}
-
-extension HeroDetailVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print("hero: \(self.viewmodel.heroes.count)")
-        return self.viewmodel.heroes.count
-    }
-
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! HeroCell
-        cell.hideSkeleton()
-        cell.setImage(Constants.ProductionServer.url+self.viewmodel.heroes[indexPath.row].img)
-        cell.lblAttackType.text = self.viewmodel.heroes[indexPath.row].attackType
-        cell.lblName.text = self.viewmodel.heroes[indexPath.row].localizedName
-        return cell
-    }
-
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 100, height: 120)
+    func collectionSetup(){
+        suggestedView = SuggestedHero(heroes: self.viewmodel.heroes)
+        suggestedView.delegate = self
+        self.view.addSubview(suggestedView)
+        suggestedView.snp.makeConstraints { (make) in
+            make.top.equalTo(self.heroProfile.snp.bottom).offset(10)
+            make.left.equalTo(self.view.safeAreaLayoutGuide.snp.leftMargin)
+            make.right.lessThanOrEqualToSuperview()
+            make.height.equalTo(180)
+            make.width.equalTo(320)
+        }
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let selectedHero = self.viewmodel.heroes[indexPath.row]
-        self.navigationController?.popViewController(animated: false)
-        self.delegate?.didSelectSuggested(selectedHero.id)
+    func afterFetchSuggestedHeroes() {
+        print("dapat: \(self.viewmodel.heroes)")
+        suggestedView.updateData(heroes: self.viewmodel.heroes)
+        
     }
+    
+    func suggested(didSelectHero id: Int) {
+        self.navigationController?.popViewController(animated: false)
+        self.delegate?.didSelectSuggested(id)
+    }
+
 }

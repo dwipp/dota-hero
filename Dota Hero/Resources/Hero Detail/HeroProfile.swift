@@ -57,7 +57,7 @@ class HeroProfile: UIView {
         self.blurLayer.contentView.addSubview(self.detailView)
         self.detailView.snp.makeConstraints { (make) in
             make.top.equalToSuperview()
-            make.left.equalToSuperview()
+            make.left.equalTo(self.safeAreaLayoutGuide.snp.leftMargin)
             make.width.equalTo(self.detailView.img.snp.width).offset(10)
             make.height.equalTo(self.blurLayer.snp.height)
         }
