@@ -22,6 +22,15 @@ extension Array where Element: Hashable {
     }
 }
 
+extension Array where Element: Equatable {
+    func contains(array: [Element]) -> Bool {
+        for item in array {
+            if self.contains(item) { return true }
+        }
+        return false
+    }
+}
+
 extension UILabel {
     func properties(parent:UIView, text:String?, size:CGFloat, weight:UIFont.Weight){
         parent.addSubview(self)

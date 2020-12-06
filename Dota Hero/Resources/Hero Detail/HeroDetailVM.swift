@@ -28,15 +28,20 @@ class HeroDetailVM: DetailModelProtocol {
     
     func fetchSuggestedHeroes(by hero: Hero) {
         guard let attr = hero.primaryAttr.value else {return}
+        var roles:[String] = []
+        roles.append(contentsOf: hero.roles)
+        heroes = database.fetch(Hero.self).filter{$0.id != hero.id}.filter{hero.primaryAttr == $0.primaryAttr}
+        heroes = heroes.filter({ (collectedHero) -> Bool in
+            var collectedRoles:[String] = []
+            collectedRoles.append(contentsOf: collectedHero.roles)
+            return roles.contains(array: collectedRoles)
+        })
         switch attr {
         case .agi:
-            heroes = database.fetch(Hero.self).filter{$0.id != hero.id}.filter{hero.primaryAttr == $0.primaryAttr} //filter roles juga
             heroes = heroes.sorted{$0.moveSpeed > $1.moveSpeed}
         case .str:
-            heroes = database.fetch(Hero.self).filter{$0.id != hero.id}.filter{hero.primaryAttr == $0.primaryAttr} //filter roles juga
             heroes = heroes.sorted{$0.baseAttackMax > $1.baseAttackMax}
         case .int:
-            heroes = database.fetch(Hero.self).filter{$0.id != hero.id}.filter{hero.primaryAttr == $0.primaryAttr} //filter roles juga
             heroes = heroes.sorted{$0.baseMana > $1.baseMana}
         }
         heroes = Array(heroes.prefix(3))
