@@ -11,13 +11,8 @@ import Kingfisher
 class HeroDetailVC: BaseVC, DetailActionProtocol {
     private var viewmodel: DetailModelProtocol
     var hero: Hero?
-    
-    let containerView = UIImageView()
-    let blurLayer = UIVisualEffectView()
     let imgBottom = UIImageView()
-    
-    var detailView = DetailView()
-    var statsView = StatsView()
+    var heroProfile = HeroProfile()
     
     init() {
         self.viewmodel = HeroDetailVM()
@@ -35,72 +30,24 @@ class HeroDetailVC: BaseVC, DetailActionProtocol {
         super.viewDidLoad()
         self.setup()
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2) {
-            self.delaySetup()
+            self.profileSetup()
         }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        containerView.isHidden = true
-        blurLayer.isHidden = true
+        heroProfile.isHidden = true
     }
     
-    private func delaySetup(){
+    private func profileSetup(){
         guard let hero = hero else{return}
         
-        view.addSubview(containerView)
-        containerView.contentMode = .scaleAspectFill
-        containerView.contentScaleFactor = 2
-        containerView.snp.makeConstraints { (make) in
+        heroProfile = HeroProfile(hero: hero)
+        self.view.addSubview(heroProfile)
+        heroProfile.snp.makeConstraints { (make) in
             make.top.equalTo(self.view.safeAreaLayoutGuide.snp.topMargin)
             make.left.equalTo(self.view.safeAreaLayoutGuide.snp.leftMargin)
             make.right.equalTo(self.view.safeAreaLayoutGuide.snp.rightMargin)
             make.height.equalTo(UIScreen.main.bounds.width)
-        }
-        containerView.kf.setImage(with: URL(string: Constants.ProductionServer.url+hero.img), options: [.forceTransition, .transition(.fade(0.5))], completionHandler:  { result in
-            self.showAfterBackground()
-            
-        })
-        
-        let blur = UIBlurEffect(style: .regular)
-        blurLayer.effect = blur
-        blurLayer.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        view.addSubview(blurLayer)
-        blurLayer.snp.makeConstraints { (make) in
-            make.top.left.right.height.equalTo(containerView)
-        }
-    }
-    
-    private func showAfterBackground(){
-        guard let hero = hero else{return}
-        self.detailView = DetailView(hero: hero)
-        self.blurLayer.contentView.addSubview(self.detailView)
-        self.detailView.snp.makeConstraints { (make) in
-            make.top.equalToSuperview()
-            make.left.equalToSuperview()
-            if UIScreen.main.bounds.width < 375 {
-                make.width.equalTo(100)
-                make.height.equalTo(100)
-            }else if UIScreen.main.bounds.width < 414 {
-                make.width.equalTo(130)
-                make.height.equalTo(130)
-            }else {
-                make.width.equalTo(150)
-                make.height.equalTo(150)
-            }
-        }
-        
-        self.statsView = StatsView(hero: hero)
-        self.blurLayer.contentView.addSubview(self.statsView)
-        self.statsView.snp.makeConstraints { (make) in
-            make.top.equalToSuperview()
-            if UIScreen.main.bounds.width < 375 {
-                make.left.equalTo(self.detailView.snp.right).offset(30)
-            }else if UIScreen.main.bounds.width < 414 {
-                make.left.equalTo(self.detailView.snp.right).offset(50)
-            }else {
-                make.left.equalTo(self.detailView.snp.right).offset(70)
-            }
-            make.width.equalTo(170)
         }
     }
     
