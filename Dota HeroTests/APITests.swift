@@ -27,7 +27,7 @@ class APITests: XCTestCase {
             return decoder
         }()
         AF.request(APIRouter.heroList)
-            .responseDecodable(of: [ListHero].self, decoder: decoder) { response in
+            .responseDecodable(of: [Hero].self, decoder: decoder) { response in
                 switch response.result {
                 case .failure(let error):
                     XCTFail(error.localizedDescription)

@@ -19,6 +19,7 @@ class HeroCell: UICollectionViewCell {
         self.layer.cornerRadius = 5
         self.layer.borderWidth = 0.5
         self.layer.borderColor = UIColor.systemGray3.cgColor
+        self.backgroundColor = .systemBackground
     }
     
     func setImage(_ url:String){

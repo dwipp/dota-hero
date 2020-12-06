@@ -43,15 +43,15 @@ class ListVC: BaseVC, ListActionProtocol, ErrorDelegate {
     
     private func setup(){
         self.title = NSLocalizedString("Heroes of Dota", comment: "")
+        self.navigationItem.backButtonTitle = ""
         
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.scrollDirection = .vertical
         flowLayout.minimumLineSpacing = 10
         flowLayout.minimumInteritemSpacing = 1
-        print("widthhh: \(UIScreen.main.bounds.width)")
-        if UIScreen.main.bounds.width < 375 {
+        if Utils().deviceWidth < 375 {
             flowLayout.sectionInset = UIEdgeInsets(top: 10, left: 5, bottom: 10, right: 5)
-        }else if UIScreen.main.bounds.width < 414 {
+        }else if Utils().deviceWidth < 414 {
             flowLayout.sectionInset = UIEdgeInsets(top: 10, left: 15, bottom: 10, right: 15)
         }else {
             flowLayout.sectionInset = UIEdgeInsets(top: 10, left: 3, bottom: 10, right: 3)
@@ -72,7 +72,6 @@ class ListVC: BaseVC, ListActionProtocol, ErrorDelegate {
         errorView.delegate = self
         
         btnFilter = UIBarButtonItem(title: role, style: .plain, target: self, action: #selector(self.didTapRoles(_:)))
-        self.navigationItem.rightBarButtonItem = btnFilter
     }
     
     @objc func didTapRoles(_ sender:UIButton){
@@ -92,6 +91,9 @@ class ListVC: BaseVC, ListActionProtocol, ErrorDelegate {
             }
             break
         default:
+            if self.viewmodel.data.count > 0 {
+                self.navigationItem.rightBarButtonItem = btnFilter
+            }
             self.collection?.backgroundView = nil
             self.collection?.reloadData()
             break
@@ -126,6 +128,14 @@ extension ListVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let hero = self.viewmodel.data[indexPath.row]
+        let vc = HeroDetailVC()
+        vc.hero = hero
+        vc.delegate = self
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 100, height: 120)
     }
@@ -135,8 +145,22 @@ extension ListVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
     }
 }
 
-extension ListVC: RolesDelegate {
+extension ListVC: RolesDelegate, DetailDelegate {
     func rolesDidSelect(_ role: String) {
         self.role = role
+    }
+    
+    func didSelectSuggested(_ id: Int) {
+        self.viewmodel.fetchHero(with: id)
+    }
+    
+    func afterfetchHero(hero: Hero?) {
+        guard let hero = hero else {
+            return
+        }
+        let vc = HeroDetailVC()
+        vc.hero = hero
+        vc.delegate = self
+        self.navigationController?.pushViewController(vc, animated: false)
     }
 }

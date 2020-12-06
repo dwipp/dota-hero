@@ -20,4 +20,12 @@ struct Utils {
         return reachability.isReachable
     }
     
+    let deviceWidth: CGFloat = {
+        return UIWindow.isLandscape ? UIScreen.main.bounds.height : UIScreen.main.bounds.width
+    }()
+    
+    let deviceHeight: CGFloat = {
+        return UIWindow.isLandscape ? UIScreen.main.bounds.width : UIScreen.main.bounds.height
+    }()
+    
 }

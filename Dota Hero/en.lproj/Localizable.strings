@@ -9,4 +9,14 @@
 "All" = "All";
 "Heroes of Dota" = "Heroes of Dota";
 "Filter by Role" = "Filter by Role";
+"Agi" = "Agi";
+"Str" = "Str";
+"Int" = "Int";
+"Health" = "Health";
+"Max Attack" = "Max Attack";
+"Speed" = "Speed";
+"Roles" = "Roles";
+"Attribute" = "Attribute";
+"Unknown" = "Unknown";
+"Suggested Heroes" = "Suggested Heroes:";
 
