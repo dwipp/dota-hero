@@ -101,11 +101,9 @@ class HeroDetailVC: BaseVC, DetailActionProtocol, SuggestedDelegate {
         suggestedView.snp.remakeConstraints { (make) in
             make.top.equalTo(isLandscape ? self.view.safeAreaLayoutGuide.snp.topMargin : self.heroProfile.snp.bottom).offset(10)
             if isLandscape {
-//                make.left.lessThanOrEqualToSuperview()
                 make.right.equalTo(self.view.safeAreaLayoutGuide.snp.rightMargin)
             }else {
                 make.left.equalTo(self.view.safeAreaLayoutGuide.snp.leftMargin)
-//                make.right.lessThanOrEqualToSuperview()
             }
             make.height.equalTo(180)
             make.width.equalTo(320)

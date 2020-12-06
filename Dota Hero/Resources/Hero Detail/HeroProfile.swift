@@ -64,12 +64,11 @@ class HeroProfile: UIView {
         
         self.statsView = StatsView(hero: hero)
         self.blurLayer.contentView.addSubview(self.statsView)
+        let width = UIWindow.isLandscape ? UIScreen.main.bounds.height : UIScreen.main.bounds.width
         self.statsView.snp.makeConstraints { (make) in
             make.top.equalToSuperview()
-            if UIScreen.main.bounds.width < 375 {
-                make.left.equalTo(self.detailView.snp.right).offset(30)
-            }else if UIScreen.main.bounds.width < 414 {
-                make.left.equalTo(self.detailView.snp.right).offset(50)
+            if width < 414 {
+                make.left.equalTo(self.detailView.snp.right).offset(10)
             }else {
                 make.left.equalTo(self.detailView.snp.right).offset(70)
             }
@@ -77,5 +76,7 @@ class HeroProfile: UIView {
             make.height.equalTo(self.blurLayer.snp.height)
         }
     }
+    
+    
     
 }
