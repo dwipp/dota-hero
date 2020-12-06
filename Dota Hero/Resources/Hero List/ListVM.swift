@@ -10,12 +10,14 @@ import Alamofire
 
 protocol ListActionProtocol {
     func afterFetchList(statusCode:Code)
+    func afterfetchHero(hero:Hero?)
 }
 
 protocol ListModelProtocol {
     var action: ListActionProtocol? {get set}
     func fetchList()
     func fetchList(withRole role:String)
+    func fetchHero(with id:Int)
     var data:[Hero] {get}
 }
 
@@ -61,6 +63,11 @@ class ListVM: ListModelProtocol {
         }else {
             self.action?.afterFetchList(statusCode: Code.success)
         }
+    }
+    
+    func fetchHero(with id: Int) {
+        let hero = database.fetch(Hero.self, with: id)
+        self.action?.afterfetchHero(hero: hero)
     }
     
 }

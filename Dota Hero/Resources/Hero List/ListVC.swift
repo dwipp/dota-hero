@@ -132,6 +132,7 @@ extension ListVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
         let hero = self.viewmodel.data[indexPath.row]
         let vc = HeroDetailVC()
         vc.hero = hero
+        vc.delegate = self
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -144,8 +145,22 @@ extension ListVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
     }
 }
 
-extension ListVC: RolesDelegate {
+extension ListVC: RolesDelegate, DetailDelegate {
     func rolesDidSelect(_ role: String) {
         self.role = role
+    }
+    
+    func didSelectSuggested(_ id: Int) {
+        self.viewmodel.fetchHero(with: id)
+    }
+    
+    func afterfetchHero(hero: Hero?) {
+        guard let hero = hero else {
+            return
+        }
+        let vc = HeroDetailVC()
+        vc.hero = hero
+        vc.delegate = self
+        self.navigationController?.pushViewController(vc, animated: false)
     }
 }

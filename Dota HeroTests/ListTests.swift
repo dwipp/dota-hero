@@ -23,30 +23,30 @@ class ListTests: XCTestCase {
     }
     
     func testSaveAndFetchDB(){
-        let listHero = ListHero()
+        let listHero = Hero()
         listHero.id = heroID
         database.save([listHero])
-        let hero = database.fetch(ListHero.self)
+        let hero = database.fetch(Hero.self)
         
         XCTAssertEqual(hero.last?.id, heroID)
     }
     
     func testDeleteDB(){
-        let listHero = ListHero()
+        let listHero = Hero()
         listHero.id = heroID
         database.save([listHero])
-        database.delete(ListHero.self, with: heroID)
-        let hero = database.fetch(ListHero.self)
+        database.delete(Hero.self, with: heroID)
+        let hero = database.fetch(Hero.self)
         
         XCTAssertNotEqual(hero.last?.id, heroID)
     }
     
     func testListFilterFound(){
-        let listHero = ListHero()
+        let listHero = Hero()
         listHero.id = heroID
         let arr = ["Carry", "Escape", "Nuker"]
         listHero.roles.append(objectsIn: arr)
-        let listHero1 = ListHero()
+        let listHero1 = Hero()
         listHero1.id = heroID+1
         let arr1 = ["Carry", "Escape", "Initiator"]
         listHero1.roles.append(objectsIn: arr1)
@@ -58,11 +58,11 @@ class ListTests: XCTestCase {
     }
     
     func testListFilterNil(){
-        let listHero = ListHero()
+        let listHero = Hero()
         listHero.id = heroID
         let arr = ["Carry", "Escape", "Nuker"]
         listHero.roles.append(objectsIn: arr)
-        let listHero1 = ListHero()
+        let listHero1 = Hero()
         listHero1.id = heroID+1
         let arr1 = ["Carry", "Escape", "Initiator"]
         listHero1.roles.append(objectsIn: arr1)
@@ -71,6 +71,15 @@ class ListTests: XCTestCase {
         list.fetchList(withRole: "Jungler")
         
         XCTAssertNil(list.data.first?.id)
+    }
+    
+    func testFetchHeroNotNil(){
+        let listHero = Hero()
+        listHero.id = heroID
+        database.save([listHero])
+        let hero = database.fetch(Hero.self, with: heroID)
+        
+        XCTAssertNotNil(hero)
     }
     
 

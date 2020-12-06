@@ -10,6 +10,7 @@ import Kingfisher
 
 class HeroDetailVC: BaseVC, DetailActionProtocol {
     private var viewmodel: DetailModelProtocol
+    var delegate: DetailDelegate?
     var hero: Hero?
     let imgBottom = UIImageView()
     var heroProfile = HeroProfile()
@@ -145,5 +146,11 @@ extension HeroDetailVC: UICollectionViewDelegate, UICollectionViewDataSource, UI
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 100, height: 120)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let selectedHero = self.viewmodel.heroes[indexPath.row]
+        self.navigationController?.popViewController(animated: false)
+        self.delegate?.didSelectSuggested(selectedHero.id)
     }
 }

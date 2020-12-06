@@ -17,6 +17,10 @@ protocol DetailModelProtocol {
     func fetchSuggestedHeroes(by hero:Hero)
 }
 
+protocol DetailDelegate {
+    func didSelectSuggested(_ id:Int)
+}
+
 class HeroDetailVM: DetailModelProtocol {
     var action: DetailActionProtocol?
     private (set) var heroes: [Hero] = []
