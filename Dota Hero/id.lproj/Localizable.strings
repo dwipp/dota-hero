@@ -7,7 +7,7 @@
 */
 
 "All" = "Semua";
-"Heroes of Dota" = "Pejuang Dota";
+"Heroes of Dota" = "Pahlawan Dota";
 "Filter by Role" = "Filter Peran";
 "Agi" = "Agi";
 "Str" = "Str";
@@ -18,3 +18,4 @@
 "Roles" = "Peran";
 "Attribute" = "Atribut";
 "Unknown" = "Tidak Diketahui";
+"Suggested Heroes" = "Pahlawan Yang Disarankan:";
