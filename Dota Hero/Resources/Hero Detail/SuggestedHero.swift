@@ -16,7 +16,7 @@ class SuggestedHero: UIView {
     let lblSuggested = UILabel()
     var collection: UICollectionView?
     var delegate: SuggestedDelegate?
-    var cellWidth = 100
+    var cellWidth:CGFloat = 100
     
     init() {
         self.heroes = []
@@ -39,19 +39,19 @@ class SuggestedHero: UIView {
         collection?.reloadData()
     }
     
-    private func cellWidthSetup(){
+    func cellWidthSetup() -> CGFloat{
         if Utils().deviceWidth < 375 {
-            cellWidth = 70
+            return 70
         }else if Utils().deviceWidth < 414 {
-            cellWidth = 80
+            return 80
         }else {
-            cellWidth = 100
+            return 100
         }
     }
     
     private func setup(){
-        cellWidthSetup()
-        lblSuggested.properties(parent: self, text: "Suggested Heroes", size: 18, weight: .regular)
+        cellWidth = cellWidthSetup()
+        lblSuggested.properties(parent: self, text: "Suggested Heroes", size: 16, weight: .regular)
         lblSuggested.snp.makeConstraints { (make) in
             make.top.equalToSuperview()
             make.left.equalToSuperview().offset(10)
