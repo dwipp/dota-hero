@@ -15,23 +15,9 @@ class HeroDetailVC: BaseVC, DetailActionProtocol {
     let containerView = UIImageView()
     let blurLayer = UIVisualEffectView()
     let imgBottom = UIImageView()
-    let lblAgi = UILabel()
-    let lblValueAgi = UILabel()
-    let lblStr = UILabel()
-    let lblValueStr = UILabel()
-    let lblInt = UILabel()
-    let lblValueInt = UILabel()
-    let lblHealth = UILabel()
-    let lblValueHealth = UILabel()
-    let lblAttack = UILabel()
-    let lblValueAttack = UILabel()
-    let lblSpeed = UILabel()
-    let lblValueSpeed = UILabel()
-    let lblRoles = UILabel()
-    let lblValueRoles = UILabel()
     
-    var stats = [[UILabel]]()
     var detailView = DetailView()
+    var statsView = StatsView()
     
     init() {
         self.viewmodel = HeroDetailVM()
@@ -60,7 +46,6 @@ class HeroDetailVC: BaseVC, DetailActionProtocol {
     
     private func delaySetup(){
         guard let hero = hero else{return}
-        self.setupStats()
         
         view.addSubview(containerView)
         containerView.contentMode = .scaleAspectFill
@@ -72,23 +57,8 @@ class HeroDetailVC: BaseVC, DetailActionProtocol {
             make.height.equalTo(UIScreen.main.bounds.width)
         }
         containerView.kf.setImage(with: URL(string: Constants.ProductionServer.url+hero.img), options: [.forceTransition, .transition(.fade(0.5))], completionHandler:  { result in
-            self.detailView = DetailView(hero: hero)
-            self.blurLayer.contentView.addSubview(self.detailView)
-            self.detailView.snp.makeConstraints { (make) in
-                make.top.equalToSuperview()
-                make.left.equalToSuperview()
-                if UIScreen.main.bounds.width < 375 {
-                    make.width.equalTo(100)
-                    make.height.equalTo(100)
-                }else if UIScreen.main.bounds.width < 414 {
-                    make.width.equalTo(130)
-                    make.height.equalTo(130)
-                }else {
-                    make.width.equalTo(150)
-                    make.height.equalTo(150)
-                }
-            }
-            self.generateStats(stats: self.stats)
+            self.showAfterBackground()
+            
         })
         
         let blur = UIBlurEffect(style: .regular)
@@ -100,65 +70,37 @@ class HeroDetailVC: BaseVC, DetailActionProtocol {
         }
     }
     
-    private func setupStats(){
-        guard let hero = hero else {return}
-        
-        lblAgi.text = NSLocalizedString("Agi", comment: "")
-        lblValueAgi.text = "\(hero.baseAgi)"
-        lblStr.text = NSLocalizedString("Str", comment: "")
-        lblValueStr.text = "\(hero.baseStr)"
-        lblInt.text = NSLocalizedString("Int", comment: "")
-        lblValueInt.text = "\(hero.baseInt)"
-        lblHealth.text = NSLocalizedString("Health", comment: "")
-        lblValueHealth.text = "\(hero.baseHealth)"
-        lblAttack.text = NSLocalizedString("Max Attack", comment: "")
-        lblValueAttack.text = "\(hero.baseAttackMax)"
-        lblSpeed.text = NSLocalizedString("Speed", comment: "")
-        lblValueSpeed.text = "\(hero.moveSpeed)"
-        lblRoles.text = NSLocalizedString("Roles", comment: "")
-        lblValueRoles.text = "\(hero.roles.joined(separator: ", "))"
-        
-        stats = [
-            [lblAgi, lblValueAgi],
-            [lblStr, lblValueStr],
-            [lblInt, lblValueInt],
-            [lblHealth, lblValueHealth],
-            [lblAttack, lblValueAttack],
-            [lblSpeed, lblValueSpeed],
-            [lblRoles, lblValueRoles]]
-    }
-    
-    private func generateStats(stats:[[UILabel]]){
-        for i in 0..<stats.count {
-            stats[i][0].properties(parent: blurLayer.contentView, text: nil, size: 14, weight: .regular)
-            stats[i][0].snp.makeConstraints { (make) in
-                if i == 0 {
-                    make.top.equalTo(self.view.safeAreaLayoutGuide.snp.topMargin).offset(10)
-                }else {
-                    make.top.equalTo(stats[i-1][0].snp.bottom).offset(5)
-                }
-                
-                if UIScreen.main.bounds.width < 375 {
-                    make.left.equalTo(detailView.snp.right).offset(30)
-                }else if UIScreen.main.bounds.width < 414 {
-                    make.left.equalTo(detailView.snp.right).offset(50)
-                }else {
-                    make.left.equalTo(detailView.snp.right).offset(70)
-                }
-                
-                make.height.equalTo(18)
+    private func showAfterBackground(){
+        guard let hero = hero else{return}
+        self.detailView = DetailView(hero: hero)
+        self.blurLayer.contentView.addSubview(self.detailView)
+        self.detailView.snp.makeConstraints { (make) in
+            make.top.equalToSuperview()
+            make.left.equalToSuperview()
+            if UIScreen.main.bounds.width < 375 {
+                make.width.equalTo(100)
+                make.height.equalTo(100)
+            }else if UIScreen.main.bounds.width < 414 {
+                make.width.equalTo(130)
+                make.height.equalTo(130)
+            }else {
+                make.width.equalTo(150)
+                make.height.equalTo(150)
             }
-            
-            stats[i][1].textAlignment = .right
-            stats[i][1].numberOfLines = 3
-            stats[i][1].properties(parent: blurLayer.contentView, text: nil, size: 14, weight: .regular)
-            stats[i][1].snp.makeConstraints { (make) in
-                make.top.equalTo(stats[i][0])
-                make.right.equalTo(stats[i][0].snp.left).inset(170)
-                if stats[i][1] == lblValueRoles {
-                    make.width.equalTo(110)
-                }
+        }
+        
+        self.statsView = StatsView(hero: hero)
+        self.blurLayer.contentView.addSubview(self.statsView)
+        self.statsView.snp.makeConstraints { (make) in
+            make.top.equalToSuperview()
+            if UIScreen.main.bounds.width < 375 {
+                make.left.equalTo(self.detailView.snp.right).offset(30)
+            }else if UIScreen.main.bounds.width < 414 {
+                make.left.equalTo(self.detailView.snp.right).offset(50)
+            }else {
+                make.left.equalTo(self.detailView.snp.right).offset(70)
             }
+            make.width.equalTo(170)
         }
     }
     
