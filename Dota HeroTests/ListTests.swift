@@ -52,7 +52,7 @@ class ListTests: XCTestCase {
         listHero1.roles.append(objectsIn: arr1)
         database.save([listHero,listHero1])
         
-        list.fetchList(withRole: "Initiator")
+        list.fetchLocalList(isCache: false, role: "Initiator")
         
         XCTAssertEqual(list.data.first?.id, heroID+1)
     }
@@ -68,7 +68,7 @@ class ListTests: XCTestCase {
         listHero1.roles.append(objectsIn: arr1)
         database.save([listHero,listHero1])
         
-        list.fetchList(withRole: "Jungler")
+        list.fetchLocalList(isCache: false, role: "Jungler")
         
         XCTAssertNil(list.data.first?.id)
     }
