@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		4567323B2579E7AA006D46B3 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4567323A2579E7AA006D46B3 /* Database.swift */; };
+		4575A10C257DAE540003749A /* no-internet.json in Resources */ = {isa = PBXBuildFile; fileRef = 4575A10B257DAE540003749A /* no-internet.json */; };
+		4575A117257DAF550003749A /* empty.json in Resources */ = {isa = PBXBuildFile; fileRef = 4575A116257DAF550003749A /* empty.json */; };
 		4594D1702579BAC7006BFA5E /* APIConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4594D16F2579BAC7006BFA5E /* APIConfiguration.swift */; };
 		4594D1752579BAF6006BFA5E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4594D1742579BAF6006BFA5E /* Constants.swift */; };
 		4594D17A2579BB16006BFA5E /* APIRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4594D1792579BB16006BFA5E /* APIRouter.swift */; };
@@ -31,9 +33,7 @@
 		459974582579B63D00D805DF /* Dota_HeroUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459974572579B63D00D805DF /* Dota_HeroUITests.swift */; };
 		45B05060257B0E3200128B89 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B0505F257B0E3200128B89 /* Utils.swift */; };
 		45B05068257B40CA00128B89 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B05067257B40CA00128B89 /* ErrorView.swift */; };
-		45B05070257B51D000128B89 /* empty.json in Resources */ = {isa = PBXBuildFile; fileRef = 45B0506D257B51D000128B89 /* empty.json */; };
 		45B05071257B51D000128B89 /* error.json in Resources */ = {isa = PBXBuildFile; fileRef = 45B0506E257B51D000128B89 /* error.json */; };
-		45B05072257B51D000128B89 /* no-internet.json in Resources */ = {isa = PBXBuildFile; fileRef = 45B0506F257B51D000128B89 /* no-internet.json */; };
 		45B05078257B609C00128B89 /* RolesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B05077257B609C00128B89 /* RolesVC.swift */; };
 		45B0507D257B60A600128B89 /* RolesVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B0507C257B60A600128B89 /* RolesVM.swift */; };
 		45B05082257B60B900128B89 /* RolesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B05081257B60B900128B89 /* RolesTests.swift */; };
@@ -69,6 +69,8 @@
 		27541FB9891F6A0B6B5A3662 /* Pods-Dota Hero.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dota Hero.release.xcconfig"; path = "Target Support Files/Pods-Dota Hero/Pods-Dota Hero.release.xcconfig"; sourceTree = "<group>"; };
 		3B42CE21CAD604950324005F /* Pods-Dota HeroTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dota HeroTests.release.xcconfig"; path = "Target Support Files/Pods-Dota HeroTests/Pods-Dota HeroTests.release.xcconfig"; sourceTree = "<group>"; };
 		4567323A2579E7AA006D46B3 /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
+		4575A10B257DAE540003749A /* no-internet.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "no-internet.json"; sourceTree = "<group>"; };
+		4575A116257DAF550003749A /* empty.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = empty.json; sourceTree = "<group>"; };
 		4594D16F2579BAC7006BFA5E /* APIConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConfiguration.swift; sourceTree = "<group>"; };
 		4594D1742579BAF6006BFA5E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		4594D1792579BB16006BFA5E /* APIRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRouter.swift; sourceTree = "<group>"; };
@@ -98,9 +100,7 @@
 		459974592579B63D00D805DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		45B0505F257B0E3200128B89 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		45B05067257B40CA00128B89 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
-		45B0506D257B51D000128B89 /* empty.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = empty.json; sourceTree = "<group>"; };
 		45B0506E257B51D000128B89 /* error.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = error.json; sourceTree = "<group>"; };
-		45B0506F257B51D000128B89 /* no-internet.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "no-internet.json"; sourceTree = "<group>"; };
 		45B05077257B609C00128B89 /* RolesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RolesVC.swift; sourceTree = "<group>"; };
 		45B0507C257B60A600128B89 /* RolesVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RolesVM.swift; sourceTree = "<group>"; };
 		45B05081257B60B900128B89 /* RolesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RolesTests.swift; sourceTree = "<group>"; };
@@ -287,9 +287,9 @@
 		45B0506C257B51A200128B89 /* Lotties */ = {
 			isa = PBXGroup;
 			children = (
-				45B0506D257B51D000128B89 /* empty.json */,
+				4575A116257DAF550003749A /* empty.json */,
+				4575A10B257DAE540003749A /* no-internet.json */,
 				45B0506E257B51D000128B89 /* error.json */,
-				45B0506F257B51D000128B89 /* no-internet.json */,
 			);
 			path = Lotties;
 			sourceTree = "<group>";
@@ -422,12 +422,12 @@
 			files = (
 				45B05071257B51D000128B89 /* error.json in Resources */,
 				459974422579B63C00D805DF /* LaunchScreen.storyboard in Resources */,
-				45B05070257B51D000128B89 /* empty.json in Resources */,
+				4575A10C257DAE540003749A /* no-internet.json in Resources */,
 				45DAFAF6257B868100AD5DEF /* HeroCell.xib in Resources */,
+				4575A117257DAF550003749A /* empty.json in Resources */,
 				4599743F2579B63C00D805DF /* Assets.xcassets in Resources */,
 				45DAFB0E257BD72900AD5DEF /* Localizable.strings in Resources */,
 				4599743D2579B63C00D805DF /* Main.storyboard in Resources */,
-				45B05072257B51D000128B89 /* no-internet.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

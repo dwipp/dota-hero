@@ -14,11 +14,13 @@ class ListVC: BaseVC, ListActionProtocol, ErrorDelegate {
     var collection:UICollectionView?
     var errorView = ErrorView()
     var btnFilter = UIBarButtonItem()
+    let refreshControl = UIRefreshControl()
+    var isError = false
+    
     var role = NSLocalizedString("All", comment: "") {
         didSet {
             btnFilter.title = role
-            self.viewmodel.fetchList(withRole: role)
-            self.collection?.reloadData()
+            self.viewmodel.fetchLocalList(isCache: false, role: role)
         }
     }
     
@@ -38,7 +40,7 @@ class ListVC: BaseVC, ListActionProtocol, ErrorDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setup()
-        self.viewmodel.fetchList()
+        self.viewmodel.fetchList(role)
     }
     
     private func setup(){
@@ -72,6 +74,13 @@ class ListVC: BaseVC, ListActionProtocol, ErrorDelegate {
         errorView.delegate = self
         
         btnFilter = UIBarButtonItem(title: role, style: .plain, target: self, action: #selector(self.didTapRoles(_:)))
+        
+        collection?.addSubview(refreshControl)
+        refreshControl.addTarget(self, action: #selector(self.didPullToRefresh), for: .valueChanged)
+    }
+    
+    @objc func didPullToRefresh(){
+        self.viewmodel.fetchList(role)
     }
     
     @objc func didTapRoles(_ sender:UIButton){
@@ -83,11 +92,15 @@ class ListVC: BaseVC, ListActionProtocol, ErrorDelegate {
     }
     
     func afterFetchList(statusCode: Code) {
+        refreshControl.endRefreshing()
         errorView.setup(statusCode)
+        isError = false
         switch statusCode {
         case .error, .noInternet, .empty:
             if self.viewmodel.data.count == 0 {
+                isError = true
                 self.collection?.backgroundView = errorView
+                self.collection?.reloadData()
             }
             break
         default:
@@ -102,7 +115,7 @@ class ListVC: BaseVC, ListActionProtocol, ErrorDelegate {
     }
     
     func didTapReload() {
-        self.viewmodel.fetchList()
+        self.viewmodel.fetchList(role)
     }
 
 }
@@ -111,8 +124,11 @@ extension ListVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if self.viewmodel.data.count > 0 {
             return self.viewmodel.data.count
+        }else if isError {
+            return 0
+        }else {
+            return 5
         }
-        return 5
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -122,18 +138,20 @@ extension ListVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
             cell.setImage(Constants.ProductionServer.url+self.viewmodel.data[indexPath.row].img)
             cell.lblAttackType.text = self.viewmodel.data[indexPath.row].attackType
             cell.lblName.text = self.viewmodel.data[indexPath.row].localizedName
-        }else {
+        }else if !isError {
             cell.showAnimatedGradientSkeleton()
         }
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let hero = self.viewmodel.data[indexPath.row]
-        let vc = HeroDetailVC()
-        vc.hero = hero
-        vc.delegate = self
-        self.navigationController?.pushViewController(vc, animated: true)
+        if self.viewmodel.data.count > 0 {
+            let hero = self.viewmodel.data[indexPath.row]
+            let vc = HeroDetailVC()
+            vc.hero = hero
+            vc.delegate = self
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
