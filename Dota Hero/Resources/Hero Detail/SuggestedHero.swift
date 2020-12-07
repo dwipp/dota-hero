@@ -43,7 +43,7 @@ class SuggestedHero: UIView {
         if Utils().deviceWidth < 375 {
             return 70
         }else if Utils().deviceWidth < 414 {
-            return 80
+            return 85
         }else {
             return 100
         }
@@ -90,19 +90,18 @@ extension SuggestedHero: UICollectionViewDelegate, UICollectionViewDataSource, U
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! HeroCell
         cell.hideSkeleton()
         cell.setImage(Constants.ProductionServer.url+self.heroes[indexPath.row].img)
-        cell.lblAttackType.text = self.heroes[indexPath.row].attackType
         cell.lblName.text = self.heroes[indexPath.row].localizedName
+        if Utils().deviceWidth >= 375 {
+            cell.lblAttackType.text = self.heroes[indexPath.row].attackType
+        }else {
+            cell.lblAttackType.text = ""
+        }
         return cell
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if Utils().deviceWidth < 375 {
-            return CGSize(width: 70, height: 84)
-        }else if Utils().deviceWidth < 414 {
-            return CGSize(width: 80, height: 96)
-        }else {
-            return CGSize(width: 100, height: 120)
-        }
+        let ratio:CGFloat = 120/100
+        return CGSize(width: cellWidthSetup(), height: cellWidthSetup()*ratio)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

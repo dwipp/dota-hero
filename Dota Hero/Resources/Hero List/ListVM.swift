@@ -39,8 +39,7 @@ class ListVM: ListModelProtocol {
                 self.database.save(response)
                 self.fetchLocalList(isCache: false, role: role)
                 break
-            case .failure(let error):
-                print("errornya nih: \(error.responseCode) --> \(error.asAFError?.failureReason)")
+            case .failure(_):
                 self.action?.afterFetchList(statusCode: Code.error)
                 break
             }
