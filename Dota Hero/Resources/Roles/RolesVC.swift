@@ -43,8 +43,6 @@ class RolesVC: BaseVC, RolesActionProtocol {
             make.top.equalTo(self.view.safeAreaLayoutGuide.snp.topMargin)
             make.left.bottom.right.equalToSuperview()
         }
-        
-        
     }
     
     func afterFetchRoles() {

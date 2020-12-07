@@ -38,8 +38,7 @@ class DetailView: UIView {
         img.snp.makeConstraints { (make) in
             make.top.equalTo(self.snp.top).offset(10)
             make.left.equalTo(self.snp.left).offset(10)
-            make.width.equalTo((Utils().deviceWidth/2)-60)
-            make.height.equalTo((Utils().deviceWidth/2)-60)
+            make.width.height.equalTo((Utils().deviceWidth/2)-60)
         }
         
         self.lblName.properties(parent: self, text: hero.localizedName, size: 18, weight: .bold)
