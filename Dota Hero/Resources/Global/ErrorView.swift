@@ -34,17 +34,15 @@ class ErrorView:UIView {
     
     
     func setup(_ statusCode:Code){
-        btnReload.isHidden = false
         switch statusCode {
         case .error:
-            lblmessage.text = "Something went wrong"
+            lblmessage.text = NSLocalizedString("Something went wrong", comment: "")
             break
         case .noInternet:
-            lblmessage.text = "No internet connection"
+            lblmessage.text = NSLocalizedString("No internet connection", comment: "")
             break
         case .empty:
-            lblmessage.text = "No data available"
-            btnReload.isHidden = true
+            lblmessage.text = NSLocalizedString("No data available", comment: "")
             break
         default:
             break
@@ -55,8 +53,8 @@ class ErrorView:UIView {
         animationView.snp.makeConstraints { (make) in
             make.top.equalTo(self.safeAreaLayoutGuide.snp.topMargin).offset(30)
             make.centerX.equalToSuperview()
-            make.width.equalTo(100)
-            make.height.equalTo(100)
+            make.width.equalTo(150)
+            make.height.equalTo(150)
         }
         animationView.loopMode = .loop
         animationView.play()
@@ -74,11 +72,12 @@ class ErrorView:UIView {
         addSubview(btnReload)
         btnReload.backgroundColor = .systemBlue
         btnReload.layer.cornerRadius = 5
-        btnReload.setTitle("Reload", for: .normal)
+        btnReload.setTitle(NSLocalizedString("Reload", comment: ""), for: .normal)
+        btnReload.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .medium)
         btnReload.snp.makeConstraints { (make) in
             make.top.equalTo(lblmessage.snp.bottom).offset(10)
             make.centerX.equalToSuperview()
-            make.width.equalTo(80)
+            make.width.equalTo(120)
             make.height.equalTo(40)
         }
         btnReload.addTarget(self, action: #selector(didTapReload), for: .touchUpInside)

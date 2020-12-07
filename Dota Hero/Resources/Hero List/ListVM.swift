@@ -15,8 +15,8 @@ protocol ListActionProtocol {
 
 protocol ListModelProtocol {
     var action: ListActionProtocol? {get set}
-    func fetchList()
-    func fetchList(withRole role:String)
+    func fetchList(_ role:String)
+    func fetchLocalList(isCache:Bool, role:String)
     func fetchHero(with id:Int)
     var data:[Hero] {get}
 }
@@ -26,8 +26,8 @@ class ListVM: ListModelProtocol {
     private (set) var data = [Hero]()
     private var database = Database()
     
-    func fetchList() {
-        serveData(isCache: true)
+    func fetchList(_ role: String) {
+        fetchLocalList(isCache: true, role: role)
         guard Utils().isReachable() else {
             // no internet connection
             self.action?.afterFetchList(statusCode: Code.noInternet)
@@ -37,7 +37,7 @@ class ListVM: ListModelProtocol {
             switch response.result{
             case .success(let response):
                 self.database.save(response)
-                self.serveData(isCache: false)
+                self.fetchLocalList(isCache: false, role: role)
                 break
             case .failure(_):
                 self.action?.afterFetchList(statusCode: Code.error)
@@ -46,16 +46,11 @@ class ListVM: ListModelProtocol {
         }
     }
     
-    func fetchList(withRole role: String) {
-        data = database.fetch(Hero.self)
+    func fetchLocalList(isCache:Bool, role:String){
+        self.data = self.database.fetch(Hero.self)
         if role != NSLocalizedString("All", comment: "") {
             data = data.filter{$0.roles.contains(role)}
         }
-        self.action?.afterFetchList(statusCode: Code.success)
-    }
-    
-    private func serveData(isCache:Bool){
-        self.data = self.database.fetch(Hero.self)
         if self.data.count == 0 && isCache {
             self.action?.afterFetchList(statusCode: Code.success)
         }else if self.data.count == 0 {
