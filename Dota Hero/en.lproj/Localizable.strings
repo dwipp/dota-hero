@@ -1,0 +1,26 @@
+/* 
+  Localizable.strings
+  Dota Hero
+
+  Created by Dwi Putra on 05/12/20.
+  
+*/
+
+"All" = "All";
+"Heroes of Dota" = "Heroes of Dota";
+"Filter by Role" = "Filter by Role";
+"Agi" = "Agi";
+"Str" = "Str";
+"Int" = "Int";
+"Health" = "Health";
+"Max Attack" = "Max Attack";
+"Speed" = "Speed";
+"Roles" = "Roles";
+"Attribute" = "Attribute";
+"Unknown" = "Unknown";
+"Suggested Heroes" = "Suggested Heroes:";
+"Something went wrong" = "Something went wrong";
+"No internet connection" = "No internet connection";
+"No data available" = "No data available";
+"Reload" = "Reload";
+

@@ -1,0 +1,25 @@
+/* 
+  Localizable.strings
+  Dota Hero
+
+  Created by Dwi Putra on 05/12/20.
+  
+*/
+
+"All" = "Semua";
+"Heroes of Dota" = "Pahlawan Dota";
+"Filter by Role" = "Filter Peran";
+"Agi" = "Agi";
+"Str" = "Str";
+"Int" = "Int";
+"Health" = "Kesehatan";
+"Max Attack" = "Serangan Maks.";
+"Speed" = "Kecepatan";
+"Roles" = "Peran";
+"Attribute" = "Atribut";
+"Unknown" = "Tidak Diketahui";
+"Suggested Heroes" = "Pahlawan Yang Disarankan:";
+"Something went wrong" = "Terjadi kesalahan";
+"No internet connection" = "Tidak ada koneksi internet";
+"No data available" = "Data tidak tersedia";
+"Reload" = "Muat Ulang";
