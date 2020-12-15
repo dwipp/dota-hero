@@ -37,6 +37,7 @@
 		45B05078257B609C00128B89 /* RolesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B05077257B609C00128B89 /* RolesVC.swift */; };
 		45B0507D257B60A600128B89 /* RolesVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B0507C257B60A600128B89 /* RolesVM.swift */; };
 		45B05082257B60B900128B89 /* RolesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B05081257B60B900128B89 /* RolesTests.swift */; };
+		45D2516F2586337800D5DD6C /* Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D2516E2586337800D5DD6C /* Box.swift */; };
 		45DAFAE7257B6B4700AD5DEF /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DAFAE6257B6B4700AD5DEF /* Extensions.swift */; };
 		45DAFAF5257B868100AD5DEF /* HeroCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DAFAF3257B868100AD5DEF /* HeroCell.swift */; };
 		45DAFAF6257B868100AD5DEF /* HeroCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 45DAFAF4257B868100AD5DEF /* HeroCell.xib */; };
@@ -104,6 +105,7 @@
 		45B05077257B609C00128B89 /* RolesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RolesVC.swift; sourceTree = "<group>"; };
 		45B0507C257B60A600128B89 /* RolesVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RolesVM.swift; sourceTree = "<group>"; };
 		45B05081257B60B900128B89 /* RolesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RolesTests.swift; sourceTree = "<group>"; };
+		45D2516E2586337800D5DD6C /* Box.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Box.swift; sourceTree = "<group>"; };
 		45DAFAE6257B6B4700AD5DEF /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		45DAFAF3257B868100AD5DEF /* HeroCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroCell.swift; sourceTree = "<group>"; };
 		45DAFAF4257B868100AD5DEF /* HeroCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeroCell.xib; sourceTree = "<group>"; };
@@ -182,6 +184,7 @@
 				4567323A2579E7AA006D46B3 /* Database.swift */,
 				45B0505F257B0E3200128B89 /* Utils.swift */,
 				45DAFAE6257B6B4700AD5DEF /* Extensions.swift */,
+				45D2516E2586337800D5DD6C /* Box.swift */,
 			);
 			path = Configs;
 			sourceTree = "<group>";
@@ -568,6 +571,7 @@
 				45B05068257B40CA00128B89 /* ErrorView.swift in Sources */,
 				45B05060257B0E3200128B89 /* Utils.swift in Sources */,
 				45B05078257B609C00128B89 /* RolesVC.swift in Sources */,
+				45D2516F2586337800D5DD6C /* Box.swift in Sources */,
 				45984522257CCF3300D02339 /* SuggestedHero.swift in Sources */,
 				45DAFAE7257B6B4700AD5DEF /* Extensions.swift in Sources */,
 				4594D1932579C3C4006BFA5E /* BaseVC.swift in Sources */,
